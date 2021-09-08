@@ -20,34 +20,40 @@ abstract class Database {
 
   /// Retrieves the given collection from the database.
   /// * [collectionPath] the path to the collection to retrieve
-  ///   eg: - collection_name/ # For no sql implementation
+  ///   eg: 
+  ///    # For no sql implementation.
+  ///       - collection_name/
   ///       - collection_name/document-xxx/sub_collection_name
-  ///            # For no sql implementation.
-  ///       - ourdb.sqlite/table_name # For the sqlite implementation.
-  Map<String, dynamic> getCollection(String collectionPath);
+  ///    # For no sql implementation.
+  ///       - table_name/book/chapter/verser
+  ///       - table_name/book/chapter
+  ///       - table_name/book
+  Future<List<Map<String, dynamic>>?> getCollection(String collectionPath);
 
   /// Create collection from the database.
   /// * [collectionPath] the path to the collection to create
-  ///   eg: - collection_name/ # For no sql implementation
+  ///   eg: 
+  ///    # For no sql implementation.
+  ///       - collection_name/
   ///       - collection_name/document-xxx/sub_collection_name
-  ///            # For no sql implementation.
-  ///       - ourdb.sqlite/table_name # For the sqlite implementation.
-  Future<String?> createRecord(
+  ///    # For no sql implementation [collectionPath].
+  ///       - table_name
+  Future<int?> createRecord(
       String collectionPath, Map<String, dynamic> recordMap);
 
   /// Remove collection from the database.
   /// * [collectionPath] the path to the collection to remove
-  ///   eg: - collection_name/ # For no sql implementation
+  ///   eg: 
+  ///    # For no sql implementation.
+  ///       - collection_name/
   ///       - collection_name/document-xxx/sub_collection_name
-  ///            # For no sql implementation.
-  ///       - ourdb.sqlite/table_name # For the sqlite implementation.
-  Future<void> removeRecordsByPath(
-      String collectionPath, List<String> documentsIds);
+  ///    # For no sql implementation.
+  ///       - table_name/book/chapter/verser
+  ///       - table_name/book/chapter
+  ///       - table_name/book
+  Future<int?> removeRecordByPath(
+      String collectionPath, int documentsId);
 
-  /// Init the database.
-  /// * [nameDatabase] the name database init.
-  ///   # For the sqlite implementation.
-  Future<void> initBD(String nameDatabase);
 }
 
 /// Contains the list of available type of database to use.
@@ -67,5 +73,4 @@ enum DatabaseType {
 
 main(){
   Database database =  Database(type:DatabaseType.sQflite);
-  database.initBD('cb_lecture');
 }

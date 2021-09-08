@@ -5,50 +5,97 @@ import '../database.dart' as our_bd;
 
 /// Implementation class for Sqlite database.
 class SqfliteImplementation implements our_bd.Database {
+  /// Reference to the database.
+  static Database? _database;
 
-  /// Constructor who init database.
-  @override
-  Future<void> initBD(String nameDatabase) async {
-    database = openDatabase(
-      // Set the path to the database. Note: Using the `join` function from the
-      // `path` package is best practice to ensure the path is correctly
-      // constructed for each platform.
-      join(await getDatabasesPath(), '$nameDatabase.db'),
-      // When the database is first created, create a table to store dogs.
-      onCreate: (Database db, int version) {
-        // Run the CREATE TABLE statement on the database.
-        // return db.execute(
-        //   'CREATE TABLE dogs(id INTEGER PRIMARY KEY,
-        //     name TEXT, age INTEGER)',
-        // );
-      },
-      // Set the version. This executes the onCreate function and provides a
-      // path to perform database upgrades and downgrades.
-      version: 1,
-    );
+  /// Getter of database.
+  Future<Database> get database async => _database ??= await initDb();
+
+  /// Function who initialize the database sqlite.
+  Future<Database> initDb() async {
+    final String path = join(await getDatabasesPath(), 'cb_lecture.db');
+    return openDatabase(path, version: 1, onCreate: _onCreate);
   }
 
-  /// Get a reference to the database.
-  Future<Database>? database;
+  ///Function who create the database sqlite.
+  Future<void> _onCreate(Database db, int version) async => db.execute(
+      // ignore: prefer_adjacent_string_concatenation
+      'CREATE TABLE Employee(id INTEGER PRIMARY KEY, firstname TEXT,' +
+          'lastname TEXT, mobileno TEXT,emailId TEXT )');
 
-  /// Function use for init our database.
-
-  @override
-  Map<String, dynamic> getCollection(String collectionPath) {
-    throw UnimplementedError();
+  /// Function who close instance of database sqlite.
+  Future<void> close() async {
+    await _database?.close();
   }
 
   @override
-  Future<String?> createRecord(
-      String collectionPath, Map<String, dynamic> recordMap) {
-    // TODO: implement createRecord
-    throw UnimplementedError();
+  Future<List<Map<String, dynamic>>?> getCollection(
+      String collectionPath) async {
+    final Database db = await database;
+    switch (collectionPath.split('/').length) {
+      case 2:
+        {
+          return db.query(
+            collectionPath.split('/')[0],
+            where: 'book = ?',
+            whereArgs: <String>[collectionPath.split('/')[1]],
+          );
+        }
+      case 3:
+        {
+          return db.query(
+            collectionPath.split('/')[0],
+            where: 'book = ? and chapter= ?',
+            whereArgs: <String>[
+              collectionPath.split('/')[1],
+              collectionPath.split('/')[2]
+            ],
+          );
+        }
+      case 4:
+        {
+          return db.query(
+            collectionPath.split('/')[0],
+            where: 'id = ?',
+            whereArgs: <String>[
+              collectionPath.split('/')[3],
+            ],
+          );
+        }
+      default:
+        {
+          return null;
+        }
+    }
   }
 
   @override
-  Future<void> removeRecordsByPath(
-      String collectionPath, List<String> documentsIds) {
-    // TODO: implement removeRecordsByPath
-    throw UnimplementedError();
+  Future<int?> createRecord(
+      String collectionPath, Map<String, dynamic> recordMap) async {
+    final Database db = await database;
+    if (collectionPath.isEmpty || collectionPath.split('/').length > 1) {
+      return null;
+    } else {
+      return db.insert(
+        collectionPath,
+        recordMap,
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+    }
+  }
+
+  @override
+  Future<int?> removeRecordByPath(
+      String collectionPath, int documentsId) async {
+    final Database db = await database;
+    if (collectionPath.isEmpty || collectionPath.split('/').length > 1) {
+      return null;
+    } else {
+      return db.delete(
+        collectionPath,
+        where: 'id = ?',
+        whereArgs: <int>[documentsId],
+      );
+    }
   }
 }
