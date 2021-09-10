@@ -21,7 +21,7 @@ class MaterialColorPlus extends MaterialColor {
   /// The darkness  representation of the current color.
   final Color darkness;
 
-  /// Returns the reversed brightness the given [target] color.
+  /// Returns the reversed brightness the current color.
   ///
   /// * [radius] The radius from the current brightness to the destination
   ///   brightness.
