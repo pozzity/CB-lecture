@@ -30,35 +30,51 @@ class SqfliteImplementation implements our_bd.Database {
 
   @override
   Future<List<Map<String, dynamic>>?> getCollection(
-      String collectionPath) async {
+      String collectionPath ) async {
     final Database db = await database;
     switch (collectionPath.split('/').length) {
       case 2:
         {
           return db.query(
             collectionPath.split('/')[0],
-            where: 'book = ?',
-            whereArgs: <String>[collectionPath.split('/')[1]],
+            columns: <String>['book'],
+            where: 'traductionId = ?',
+            whereArgs: <String>[
+              collectionPath.split('/')[1],
+              ],
           );
         }
       case 3:
         {
           return db.query(
             collectionPath.split('/')[0],
-            where: 'book = ? and chapter= ?',
+            columns: <String>['chapter'],
+            where: 'traductionId = ? and book= ?',
             whereArgs: <String>[
               collectionPath.split('/')[1],
               collectionPath.split('/')[2]
-            ],
+              ],
           );
         }
       case 4:
         {
           return db.query(
             collectionPath.split('/')[0],
+            where: 'traductionId = ? and book = ? and chapter= ?',
+            whereArgs: <String>[
+              collectionPath.split('/')[1],
+              collectionPath.split('/')[2],
+              collectionPath.split('/')[3],
+            ],
+          );
+        }
+      case 5:
+        {
+          return db.query(
+            collectionPath.split('/')[0],
             where: 'id = ?',
             whereArgs: <String>[
-              collectionPath.split('/')[3],
+              collectionPath.split('/')[4],
             ],
           );
         }
@@ -86,7 +102,7 @@ class SqfliteImplementation implements our_bd.Database {
 
   @override
   Future<int?> removeRecordByPath(
-      String collectionPath, int documentsId) async {
+      String collectionPath, int documentId) async {
     final Database db = await database;
     if (collectionPath.isEmpty || collectionPath.split('/').length > 1) {
       return null;
@@ -94,7 +110,7 @@ class SqfliteImplementation implements our_bd.Database {
       return db.delete(
         collectionPath,
         where: 'id = ?',
-        whereArgs: <int>[documentsId],
+        whereArgs: <int>[documentId],
       );
     }
   }

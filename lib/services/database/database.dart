@@ -48,11 +48,11 @@ abstract class Database {
   ///       - collection_name/
   ///       - collection_name/document-xxx/sub_collection_name
   ///    # For no sql implementation.
-  ///       - table_name/book/chapter/verser
-  ///       - table_name/book/chapter
-  ///       - table_name/book
+  ///       - table_name/traductionId/book/chapter/verser
+  ///       - table_name/traductionId/book/chapter
+  ///       - table_name/traductionId/book
   Future<int?> removeRecordByPath(
-      String collectionPath, int documentsId);
+      String collectionPath, int documentId);
 
 }
 

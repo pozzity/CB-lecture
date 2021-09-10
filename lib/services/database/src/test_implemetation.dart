@@ -2,24 +2,85 @@ import '../database.dart';
 
 /// implementation class for fake database
 class TestImplementation implements Database {
-  final Map<String, Map<String, dynamic>> _dataBase =
-      <String, Map<String, dynamic>>{
-    'book': <String, dynamic>{
-      'jean': <String, dynamic>{
-        'chapter': <String, dynamic>{
-          'verse': <String, dynamic>{
-            'text' : 'text'
-          }
+  final List<Map<String, dynamic>> _dataBase = <Map<String, dynamic>>[
+    <String, dynamic>{
+      'id': 1,
+      'traductionId': 'tra1',
+      'book': 'jean',
+      'chapter': '1',
+      'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+    },
+    <String, dynamic>{
+      'id': 2,
+      'traductionId': 'tra1',
+      'book': 'jean',
+      'chapter': '1',
+      'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+    },
+    <String, dynamic>{
+      'id': 3,
+      'traductionId': 'tra1',
+      'book': 'jean',
+      'chapter': '2',
+      'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+    },
+    <String, dynamic>{
+      'id': 4,
+      'traductionId': 'tra1',
+      'book': 'jean',
+      'chapter': '2',
+      'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+    },
+    <String, dynamic>{
+      'id': 5,
+      'traductionId': 'tra1',
+      'book': 'jean',
+      'chapter': '2',
+      'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+    },
+  ];
+
+  @override
+  Future<List<Map<String, dynamic>>?> getCollection(
+      String collectionPath) async {
+    switch (collectionPath.split('/').length) {
+      case 2:
+        {
+          return List<Map<String, dynamic>>.from(_dataBase.where(
+                  (Map<String, dynamic> element) =>
+                      element['traductionId'] == collectionPath.split('/')[1]))
+              as Future<List<Map<String, dynamic>>?>;
         }
-      },
-      'xxx-2': <String, dynamic>{
-        'nom': 'Salutation',
-        'nom': 'Salutation',
-        'nom': 'Salutation',
-        'nom': 'Salutation'
-      }
+      case 3:
+        {
+          return List<Map<String, dynamic>>.from(_dataBase.where(
+                  (Map<String, dynamic> element) =>
+                      element['traductionId'] == collectionPath.split('/')[1] &&
+                      element['book'] == collectionPath.split('/')[2]))
+              as Future<List<Map<String, dynamic>>?>;
+        }
+      case 4:
+        {
+          return List<Map<String, dynamic>>.from(_dataBase.where(
+                  (Map<String, dynamic> element) =>
+                      element['traductionId'] == collectionPath.split('/')[1] &&
+                      element['book'] == collectionPath.split('/')[2] &&
+                      element['chapter'] == collectionPath.split('/')[3]))
+              as Future<List<Map<String, dynamic>>?>;
+        }
+      case 5:
+        {
+          return List<Map<String, dynamic>>.from(_dataBase.where(
+                  (Map<String, dynamic> element) =>
+                      element['id'] == collectionPath.split('/')[4]))
+              as Future<List<Map<String, dynamic>>?>;
+        }
+      default:
+        {
+          return null;
+        }
     }
-  };
+  }
 
   @override
   Future<int?> createRecord(
@@ -28,12 +89,7 @@ class TestImplementation implements Database {
   }
 
   @override
-  Future<List<Map<String, dynamic>>?> getCollection(String collectionPath) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<int?> removeRecordByPath(String collectionPath, int documentsId) {
+  Future<int?> removeRecordByPath(String collectionPath, int documentId) {
     throw UnimplementedError();
   }
 }
