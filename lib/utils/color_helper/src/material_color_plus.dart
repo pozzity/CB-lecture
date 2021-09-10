@@ -9,50 +9,46 @@ class MaterialColorPlus extends MaterialColor {
   }
 
   MaterialColorPlus._(this._backGenerator, int primary, Map<int, Color> swatch)
-      : lightness = _backGenerator.rgb(20),
-        darkness = _backGenerator.rgb(950),
+      : lightness = _backGenerator.getColorFromLight(980),
+        darkness = _backGenerator.getColorFromLight(50),
         super(primary, swatch);
 
   final _MaterialColorPlus _backGenerator;
 
-  /// Represents the lightness and the darkness representation
-  /// of the current color.
-  final Color lightness, darkness;
+  /// The lightness representation of the current color.
+  final Color lightness;
 
-  /// Returns the reversed brightness of this color.
-  Color reverseBrightness({Color? target, Brightness? brightness}) {
-    _MaterialColorPlus sColor, dColor;
-    sColor = _backGenerator;
-    if (target == null) {
-      dColor = sColor;
-    } else if (target is MaterialColorPlus) {
-      dColor = target._backGenerator;
-    } else {
-      dColor = _MaterialColorPlus(target);
+  /// The darkness  representation of the current color.
+  final Color darkness;
+
+  /// Returns the reversed brightness the given [target] color.
+  ///
+  /// * [radius] The radius from the current brightness to the destination
+  ///   brightness.
+  ///     - minimum value: 70
+  ///     - maximum value: 500
+  /// * [relativeBrightnessResult] The state of the brightness of the returned
+  ///   color relative to the brightness of the current color.
+  Color reverseBrightness(
+      {int radius = 500, Brightness? relativeBrightnessResult}) {
+    final _MaterialColorPlus currentColor = _backGenerator;
+    final int space = radius.clamp(0, 999) * 2;
+    final int lightLevel =
+        (currentColor.luminance * 1000).clamp(0, 999).toInt();
+    relativeBrightnessResult ??=
+        lightLevel >= 500 ? Brightness.dark : Brightness.light;
+
+    int targetLight;
+    switch (relativeBrightnessResult) {
+      case Brightness.dark:
+        targetLight = (lightLevel - space).clamp(0, 999);
+        break;
+      case Brightness.light:
+        targetLight = (lightLevel + space).clamp(0, 999);
+        break;
     }
-    final double distance = (dColor.luminance - sColor.luminance) * 100;
-    final Color? _lightness = sColor.luminance * 1000 > 700
-        ? null
-        : dColor.rgb(
-            (1000 - 300 - (sColor.luminance * 1000).clamp(0, 700)).toInt());
-    final Color? _darkness = sColor.luminance * 1000 < 300
-        ? null
-        : dColor.rgb(
-            (1000 + 300 - (sColor.luminance * 1000).clamp(300, 1000)).toInt());
-    if (distance.abs() >= 30) {
-      if (brightness == Brightness.light && distance.isNegative) {
-        return _lightness ?? dColor.color;
-      }
-      if (brightness == Brightness.dark && !distance.isNegative) {
-        return _darkness ?? dColor.color;
-      }
-      return dColor.color;
-    } else {
-      if (brightness == Brightness.light) {
-        return _lightness ?? _darkness ?? dColor.color;
-      }
-      return _darkness ?? _lightness ?? dColor.color;
-    }
+
+    return currentColor.getColorFromLight(targetLight);
   }
 }
 
@@ -71,21 +67,21 @@ class _MaterialColorPlus {
   Map<int, Color>? _swatch;
 
   Map<int, Color> get swatch => _swatch ??= <int, Color>{
-        50: rgb(50),
-        100: rgb(100),
-        200: rgb(200),
-        300: rgb(300),
-        400: rgb(400),
-        500: rgb(500),
-        600: rgb(600),
-        700: rgb(700),
-        800: rgb(800),
-        900: rgb(900),
+        50: getColorFromLight(950),
+        100: getColorFromLight(900),
+        200: getColorFromLight(800),
+        300: getColorFromLight(700),
+        400: getColorFromLight(600),
+        500: getColorFromLight(500),
+        600: getColorFromLight(400),
+        700: getColorFromLight(300),
+        800: getColorFromLight(200),
+        900: getColorFromLight(100),
       };
 
-  Color rgb(int swatch) {
+  Color getColorFromLight(int intensity) {
     final List<int> aux =
-        ColorUtil.hslToRgb(hue, saturation, (1000 - swatch) / 1000);
+        ColorUtil.hslToRgb(hue, saturation, intensity.clamp(0, 1000) / 1000);
     return Color.fromARGB(255, aux[0], aux[1], aux[2]);
   }
 
