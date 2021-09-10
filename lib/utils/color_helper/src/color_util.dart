@@ -80,7 +80,7 @@ class ColorUtil {
       b = hue2rgb(p, q, h - 1 / 3);
     }
 
-    return <int>[(r * 255).toInt(), (g * 255).toInt(), (b * 255).toInt()];
+    return <int>[(r * 255).round(), (g * 255).round(), (b * 255).round()];
   }
 
   /// Converts an RGB color value to HSV. Conversion formula
@@ -170,14 +170,27 @@ class ColorUtil {
         r = g = b = 0;
     }
 
-    return <int>[(r * 255).toInt(), (g * 255).toInt(), (b * 255).toInt()];
+    return <int>[(r * 255).round(), (g * 255).round(), (b * 255).round()];
   }
 
-  /// Parse a String hexadecimal color to flutter color
+  /// Parses a String hexadecimal color to flutter color.
+  ///
+  /// Note: The current representation consider web format that means
+  /// the alpha(if exist) of the given [hexColorString] should be placed
+  /// to the end of the string.
+  ///
+  /// * [hexColorString] The given hexadecimal [String] to convert.
+  ///   His value should be like:
+  ///   - `#rgb`
+  ///   - `#rgba`
+  ///   - `#rrggbb`
+  ///   - `#rrggbbaa`
+  ///
   static Color? hex2Color(String hexColorString) {
-    final String str = hexColorString;
+    final String str = hexColorString.replaceFirst('#', '');
     if (RegExp('[0-9a-fA-F]+').stringMatch(str)?.length != str.length &&
         str.length != 3 &&
+        str.length != 4 &&
         str.length != 6 &&
         str.length != 8) {
       return null;
@@ -186,10 +199,15 @@ class ColorUtil {
     if (str.length == 3) {
       value =
           int.tryParse('ff${str[0] * 2}${str[1] * 2}${str[2] * 2}', radix: 16);
+    } else if (str.length == 4) {
+      value = int.tryParse(
+          '${str[3] * 2}${str[0] * 2}${str[1] * 2}${str[2] * 2}',
+          radix: 16);
     } else if (str.length == 6) {
       value = int.tryParse('ff$str', radix: 16);
     } else if (str.length == 8) {
-      value = int.tryParse(str, radix: 16);
+      value = int.tryParse('${str.substring(6, 8)}${str.substring(0, 6)}',
+          radix: 16);
     } else {
       return null;
     }
