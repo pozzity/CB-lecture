@@ -19,7 +19,7 @@ class ColorUtil {
     double h, s;
     final double l = (max + min) / 2;
 
-    h = s = 0; // achromatic if max = min.
+    h = s = 0; // Achromatic if max = min.
     if (max != min) {
       final double d = max - min;
       s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
@@ -103,7 +103,7 @@ class ColorUtil {
     final double d = max - min;
     s = max == 0 ? 0 : d / max;
 
-    h = 0; // achromatic if max == null
+    h = 0; // Achromatic if max == null
     if (max != min) {
       if (max == r) {
         h = (g - b) / d + (g < b ? 6 : 0);
