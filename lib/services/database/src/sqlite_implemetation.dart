@@ -11,13 +11,13 @@ class SqfliteImplementation implements our_bd.Database {
   /// Getter of database.
   Future<Database> get database async => _database ??= await initDb();
 
-  /// Function who initialize the database sqlite.
+  /// Initializes SQLite database.
   Future<Database> initDb() async {
     final String path = join(await getDatabasesPath(), 'cb_lecture.db');
     return openDatabase(path, version: 1, onCreate: _onCreate);
   }
 
-  ///Function who create the database sqlite.
+  ///Creates a new SQLite database..
   Future<void> _onCreate(Database db, int version) async => db.execute(
       // ignore: prefer_adjacent_string_concatenation
       'CREATE TABLE Employee(id INTEGER PRIMARY KEY, firstname TEXT,' +
@@ -32,49 +32,50 @@ class SqfliteImplementation implements our_bd.Database {
   Future<List<Map<String, dynamic>>?> getCollection(
       String collectionPath ) async {
     final Database db = await database;
-    switch (collectionPath.split('/').length) {
+    final List<String> pathSegments = collectionPath.split('/');
+    switch (pathSegments.length) {
       case 2:
         {
           return db.query(
-            collectionPath.split('/')[0],
+            pathSegments[0],
             columns: <String>['book'],
             where: 'traductionId = ?',
             whereArgs: <String>[
-              collectionPath.split('/')[1],
+              pathSegments[1],
               ],
           );
         }
       case 3:
         {
           return db.query(
-            collectionPath.split('/')[0],
+            pathSegments[0],
             columns: <String>['chapter'],
             where: 'traductionId = ? and book= ?',
             whereArgs: <String>[
-              collectionPath.split('/')[1],
-              collectionPath.split('/')[2]
+              pathSegments[1],
+              pathSegments[2]
               ],
           );
         }
       case 4:
         {
           return db.query(
-            collectionPath.split('/')[0],
+            pathSegments[0],
             where: 'traductionId = ? and book = ? and chapter= ?',
             whereArgs: <String>[
-              collectionPath.split('/')[1],
-              collectionPath.split('/')[2],
-              collectionPath.split('/')[3],
+              pathSegments[1],
+              pathSegments[2],
+              pathSegments[3],
             ],
           );
         }
       case 5:
         {
           return db.query(
-            collectionPath.split('/')[0],
+            pathSegments[0],
             where: 'id = ?',
             whereArgs: <String>[
-              collectionPath.split('/')[4],
+              pathSegments[4],
             ],
           );
         }
@@ -86,32 +87,33 @@ class SqfliteImplementation implements our_bd.Database {
   }
 
   @override
-  Future<int?> createRecord(
+  Future<bool?> createRecord(
       String collectionPath, Map<String, dynamic> recordMap) async {
     final Database db = await database;
     if (collectionPath.isEmpty || collectionPath.split('/').length > 1) {
       return null;
     } else {
-      return db.insert(
+      final int i = await db.insert(
         collectionPath,
         recordMap,
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
+      return i != 0;
     }
   }
-
   @override
-  Future<int?> removeRecordByPath(
+  Future<bool?> removeRecordByPath(
       String collectionPath, int documentId) async {
     final Database db = await database;
     if (collectionPath.isEmpty || collectionPath.split('/').length > 1) {
       return null;
     } else {
-      return db.delete(
+      final int i = await db.delete(
         collectionPath,
         where: 'id = ?',
         whereArgs: <int>[documentId],
       );
+      return i != 0;
     }
   }
 }

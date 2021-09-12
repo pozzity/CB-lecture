@@ -43,36 +43,37 @@ class TestImplementation implements Database {
   @override
   Future<List<Map<String, dynamic>>?> getCollection(
       String collectionPath) async {
-    switch (collectionPath.split('/').length) {
+    final List<String> pathSegments = collectionPath.split('/');
+    switch (pathSegments.length) {
       case 2:
         {
           return List<Map<String, dynamic>>.from(_dataBase.where(
                   (Map<String, dynamic> element) =>
-                      element['traductionId'] == collectionPath.split('/')[1]))
+                      element['traductionId'] == pathSegments[1]))
               as Future<List<Map<String, dynamic>>?>;
         }
       case 3:
         {
           return List<Map<String, dynamic>>.from(_dataBase.where(
                   (Map<String, dynamic> element) =>
-                      element['traductionId'] == collectionPath.split('/')[1] &&
-                      element['book'] == collectionPath.split('/')[2]))
+                      element['traductionId'] == pathSegments[1] &&
+                      element['book'] == pathSegments[2]))
               as Future<List<Map<String, dynamic>>?>;
         }
       case 4:
         {
           return List<Map<String, dynamic>>.from(_dataBase.where(
                   (Map<String, dynamic> element) =>
-                      element['traductionId'] == collectionPath.split('/')[1] &&
-                      element['book'] == collectionPath.split('/')[2] &&
-                      element['chapter'] == collectionPath.split('/')[3]))
+                      element['traductionId'] == pathSegments[1] &&
+                      element['book'] == pathSegments[2] &&
+                      element['chapter'] == pathSegments[3]))
               as Future<List<Map<String, dynamic>>?>;
         }
       case 5:
         {
           return List<Map<String, dynamic>>.from(_dataBase.where(
                   (Map<String, dynamic> element) =>
-                      element['id'] == collectionPath.split('/')[4]))
+                      element['id'] == pathSegments[4]))
               as Future<List<Map<String, dynamic>>?>;
         }
       default:
@@ -83,13 +84,13 @@ class TestImplementation implements Database {
   }
 
   @override
-  Future<int?> createRecord(
+  Future<bool?> createRecord(
       String collectionPath, Map<String, dynamic> recordMap) {
     throw UnimplementedError();
   }
 
   @override
-  Future<int?> removeRecordByPath(String collectionPath, int documentId) {
+  Future<bool?> removeRecordByPath(String collectionPath, int documentId) {
     throw UnimplementedError();
   }
 }

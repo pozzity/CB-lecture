@@ -1,4 +1,6 @@
+import 'src/firestore_implementation.dart';
 import 'src/sqlite_implemetation.dart';
+import 'src/test_implemetation.dart';
 
 /// Helpers class that help us to retrieve, edit or delete document or
 /// collection from our database.
@@ -10,11 +12,9 @@ abstract class Database {
       case DatabaseType.sQflite:
         return SqfliteImplementation();
       case DatabaseType.fireStore:
-        return SqfliteImplementation();
-      case DatabaseType.hive:
-        return SqfliteImplementation();
+        return FirestoreImplementation();
       case DatabaseType.fake:
-        return SqfliteImplementation();
+        return TestImplementation();
     }
   }
 
@@ -23,11 +23,13 @@ abstract class Database {
   ///   eg: 
   ///    # For no sql implementation.
   ///       - collection_name/
-  ///       - collection_name/document-xxx/sub_collection_name
   ///    # For no sql implementation.
   ///       - table_name/book/chapter/verser
   ///       - table_name/book/chapter
   ///       - table_name/book
+  /// * return 
+  ///     # Succes : List<Map<String, dynamic>>
+  ///     # Echec : Null
   Future<List<Map<String, dynamic>>?> getCollection(String collectionPath);
 
   /// Create collection from the database.
@@ -35,10 +37,12 @@ abstract class Database {
   ///   eg: 
   ///    # For no sql implementation.
   ///       - collection_name/
-  ///       - collection_name/document-xxx/sub_collection_name
-  ///    # For no sql implementation [collectionPath].
-  ///       - table_name
-  Future<int?> createRecord(
+  ///    # For  sql implementation [collectionPath].
+  ///       - table_name/
+  /// * return boolean
+  ///     # Succes : true
+  ///     # Echec : false, null
+  Future<bool?> createRecord(
       String collectionPath, Map<String, dynamic> recordMap);
 
   /// Remove collection from the database.
@@ -46,14 +50,13 @@ abstract class Database {
   ///   eg: 
   ///    # For no sql implementation.
   ///       - collection_name/
-  ///       - collection_name/document-xxx/sub_collection_name
   ///    # For no sql implementation.
-  ///       - table_name/traductionId/book/chapter/verser
-  ///       - table_name/traductionId/book/chapter
-  ///       - table_name/traductionId/book
-  Future<int?> removeRecordByPath(
+  ///       - table_name/
+  /// * return boolean
+  ///     # Succes : true
+  ///     # Echec : false, null
+  Future<bool?> removeRecordByPath(
       String collectionPath, int documentId);
-
 }
 
 /// Contains the list of available type of database to use.
@@ -64,13 +67,6 @@ enum DatabaseType {
   /// Represents the use of sqflite implementation.
   fireStore,
 
-  /// Represents the use of sqflite implementation.
-  hive,
-
   /// Represents the use of fake implementation for debugging.
   fake
-}
-
-main(){
-  Database database =  Database(type:DatabaseType.sQflite);
 }
