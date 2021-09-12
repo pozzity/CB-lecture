@@ -31,6 +31,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  intl: ^0.16.1                     # Package for translation
+
 
 dev_dependencies:
   flutter_lints: ^1.0.4
