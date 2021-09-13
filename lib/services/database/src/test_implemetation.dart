@@ -1,7 +1,7 @@
-import '../database.dart';
+part of database_helper;
 
 /// implementation class for fake database
-class TestImplementation implements Database {
+class _FakeImplementation implements DatabaseHelper {
   final List<Map<String, dynamic>> _dataBase = <Map<String, dynamic>>[
     <String, dynamic>{
       'id': 1,
@@ -41,8 +41,8 @@ class TestImplementation implements Database {
   ];
 
   @override
-  Future<List<Map<String, dynamic>>?> getCollection(
-      String collectionPath) async {
+  Future<List<Map<String, dynamic>>?> getCollection(String collectionPath,
+     {List<Table>? tables, String? nameDataBase}) async {
     final List<String> pathSegments = collectionPath.split('/');
     switch (pathSegments.length) {
       case 2:
@@ -93,4 +93,5 @@ class TestImplementation implements Database {
   Future<bool?> removeRecordByPath(String collectionPath, int documentId) {
     throw UnimplementedError();
   }
+
 }

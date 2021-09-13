@@ -1,20 +1,16 @@
-import 'src/firestore_implementation.dart';
-import 'src/sqlite_implemetation.dart';
-import 'src/test_implemetation.dart';
+part of database_helper;
 
 /// Helpers class that help us to retrieve, edit or delete document or
 /// collection from our database.
-abstract class Database {
+abstract class DatabaseHelper {
   /// Constructs a new Database instance from the provided type in param.
   /// * [type] The database implementation to use.
-  factory Database({required DatabaseType type}) {
+  factory DatabaseHelper({required DatabaseType type}) {
     switch (type) {
       case DatabaseType.sQflite:
-        return SqfliteImplementation();
-      case DatabaseType.fireStore:
-        return FirestoreImplementation();
+        return _SqLiteImplementation();
       case DatabaseType.fake:
-        return TestImplementation();
+        return _FakeImplementation();
     }
   }
 
@@ -30,7 +26,8 @@ abstract class Database {
   /// * return 
   ///     # Succes : List<Map<String, dynamic>>
   ///     # Echec : Null
-  Future<List<Map<String, dynamic>>?> getCollection(String collectionPath);
+  Future<List<Map<String, dynamic>>?> getCollection(String collectionPath, 
+    {List<Table>? tables, String? nameDataBase});
 
   /// Create collection from the database.
   /// * [collectionPath] the path to the collection to create
@@ -63,9 +60,6 @@ abstract class Database {
 enum DatabaseType {
   /// Represents the use of sqflite implementation.
   sQflite,
-
-  /// Represents the use of sqflite implementation.
-  fireStore,
 
   /// Represents the use of fake implementation for debugging.
   fake
