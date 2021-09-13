@@ -6,6 +6,7 @@ import 'package:path/path.dart';
 part 'src/sqlite/sqlite_implemetation.dart';
 part 'src/sqlite/sqlite_table.dart';
 part 'src/sqlite/sqlite_colum.dart';
+part 'src/sqlite/sqlite_query.dart';
 part 'src/test_implemetation.dart';
 
 /// Helpers class that help us to retrieve, edit or delete document or
@@ -35,7 +36,7 @@ abstract class DatabaseHelper {
   ///     # Succes : List<Map<String, dynamic>>
   ///     # Echec : Null
   Future<List<Map<String, dynamic>>?> getCollection(String collectionPath, 
-    {List<Table>? tables, String? nameDataBase});
+    {List<Table>? tables, String? nameDataBase, List<SQLiteQuery>? filters});
 
   /// Create collection from the database.
   /// * [collectionPath] the path to the collection to create

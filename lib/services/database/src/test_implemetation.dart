@@ -42,7 +42,9 @@ class _FakeImplementation implements DatabaseHelper {
 
   @override
   Future<List<Map<String, dynamic>>?> getCollection(String collectionPath,
-     {List<Table>? tables, String? nameDataBase}) async {
+      {List<Table>? tables,
+      String? nameDataBase,
+      List<SQLiteQuery>? filters}) async {
     final List<String> pathSegments = collectionPath.split('/');
     switch (pathSegments.length) {
       case 2:
@@ -93,5 +95,4 @@ class _FakeImplementation implements DatabaseHelper {
   Future<bool?> removeRecordByPath(String collectionPath, int documentId) {
     throw UnimplementedError();
   }
-
 }

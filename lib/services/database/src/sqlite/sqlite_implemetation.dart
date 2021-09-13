@@ -35,57 +35,46 @@ class _SqLiteImplementation implements DatabaseHelper {
 
   @override
   Future<List<Map<String, dynamic>>?> getCollection(String collectionPath,
-      {List<Table>? tables, String? nameDataBase = 'text'}) async {
+      {List<Table>? tables, String? nameDataBase = 'text',
+       List<SQLiteQuery>? filters = const <SQLiteQuery>[]})async {
     final Database db = await database(tables:tables);
-    final List<String> pathSegments = collectionPath.split('/');
-    switch (pathSegments.length) {
-      case 2:
-        {
-          return db.query(
-            pathSegments[0],
-            columns: <String>['book'],
-            where: 'traductionId = ?',
-            whereArgs: <String>[
-              pathSegments[1],
-            ],
-          );
-        }
-      case 3:
-        {
-          return db.query(
-            pathSegments[0],
-            columns: <String>['chapter'],
-            where: 'traductionId = ? and book= ?',
-            whereArgs: <String>[pathSegments[1], pathSegments[2]],
-          );
-        }
-      case 4:
-        {
-          return db.query(
-            pathSegments[0],
-            where: 'traductionId = ? and book = ? and chapter= ?',
-            whereArgs: <String>[
-              pathSegments[1],
-              pathSegments[2],
-              pathSegments[3],
-            ],
-          );
-        }
-      case 5:
-        {
-          return db.query(
-            pathSegments[0],
-            where: 'id = ?',
-            whereArgs: <String>[
-              pathSegments[4],
-            ],
-          );
-        }
-      default:
-        {
-          return null;
-        }
+
+    final StringBuffer where = StringBuffer();
+    final List<String> whereArgs = <String>[];
+    for (final SQLiteQuery filter in filters!) {
+      switch (filter.condition) {
+        case SQLiteFieldCondition.isEqualTo :
+          where.write('and ${filter.key} = ? ');
+          whereArgs.add(filter.value);
+        break;
+        case SQLiteFieldCondition.isGreaterThan :
+          where.write('and ${filter.key} > ? ');
+          whereArgs.add(filter.value);
+        break;
+        case SQLiteFieldCondition.isGreaterThanOrEqualTo :
+          where.write('and ${filter.key} >= ? ');
+          whereArgs.add(filter.value);
+        break;
+        case SQLiteFieldCondition.isLessThan :
+          where.write('and ${filter.key} < ? ');
+          whereArgs.add(filter.value);
+        break;
+        case SQLiteFieldCondition.isLessThanOrEqualTo :
+          where.write('and ${filter.key} <= ? ');
+          whereArgs.add(filter.value);
+        break;
+        case SQLiteFieldCondition.isNotEqualTo :
+          where.write('and ${filter.key} <> ? ');
+          whereArgs.add(filter.value);
+        break;
+      }
     }
+    return db.query(
+            collectionPath,
+            where: where.toString(),
+            whereArgs: whereArgs,
+          );
+    
   }
 
   @override
