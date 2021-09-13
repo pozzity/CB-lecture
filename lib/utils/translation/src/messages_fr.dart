@@ -24,17 +24,18 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'fr';
 
   
-  static String m0(lapp) => "Partager ${lapp}";
+  static String m0(String lapp) => "Partager ${lapp}";
 
   
-  static m1(url) => "Hey! voici une application de partage "
+  static m1(String url) => "Hey! voici une application de partage "
   "évangélique très intéressante 👉 ${url}";
 
- 
-  static m2(count, add_s) => "Vous possédez ${count} traduction${add_s}";
+  static String m2(int count, String addS) => 
+  "Vous possédez ${count} traduction${addS}";
 
-  final messages = _notInlinedMessages(_notInlinedMessages);
-  static _notInlinedMessages(_) => <String, Function> {
+  final Map<String, Function> messages 
+    = _notInlinedMessages(_notInlinedMessages);
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function> {
     "acts" : MessageLookupByLibrary.simpleMessage("Actes"),
     "addTranslation" : MessageLookupByLibrary
                   .simpleMessage("Ajouter une traduction"),
