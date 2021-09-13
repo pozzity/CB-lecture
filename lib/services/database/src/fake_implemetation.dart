@@ -1,7 +1,7 @@
 part of database_helper;
 
-/// implementation class for fake database
-class _FakeImplementation implements DatabaseHelper {
+/// Implementation class for fake database
+class _FakeImplementation implements Database {
   final List<Map<String, dynamic>> _dataBase = <Map<String, dynamic>>[
     <String, dynamic>{
       'id': 1,
@@ -44,7 +44,7 @@ class _FakeImplementation implements DatabaseHelper {
   Future<List<Map<String, dynamic>>?> getCollection(String collectionPath,
       {List<Table>? tables,
       String? nameDataBase,
-      List<SQLiteQuery>? filters}) async {
+      List<DatabaseQuery>? filters}) async {
     final List<String> pathSegments = collectionPath.split('/');
     switch (pathSegments.length) {
       case 2:
@@ -86,13 +86,13 @@ class _FakeImplementation implements DatabaseHelper {
   }
 
   @override
-  Future<bool?> createRecord(
+  Future<bool> createRecord(
       String collectionPath, Map<String, dynamic> recordMap) {
     throw UnimplementedError();
   }
 
   @override
-  Future<bool?> removeRecordByPath(String collectionPath, int documentId) {
+  Future<bool> removeRecordByPath(String collectionPath, int documentId) {
     throw UnimplementedError();
   }
 }

@@ -1,75 +1,67 @@
 library database_helper;
 
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart' as sqlite;
+import 'package:path/path.dart' as path;
 
 part 'src/sqlite/sqlite_implemetation.dart';
 part 'src/sqlite/sqlite_table.dart';
 part 'src/sqlite/sqlite_colum.dart';
-part 'src/sqlite/sqlite_query.dart';
-part 'src/test_implemetation.dart';
+part 'src/helper/database_query.dart';
+part 'src/fake_implemetation.dart';
 
 /// Helpers class that help us to retrieve, edit or delete document or
-/// collection from our database.
-abstract class DatabaseHelper {
-  /// Constructs a new Database instance from the provided type in param.
-  /// * [type] The database implementation to use.
-  factory DatabaseHelper({required DatabaseType type}) {
-    switch (type) {
-      case DatabaseType.sQflite:
-        return _SqLiteImplementation();
-      case DatabaseType.fake:
-        return _FakeImplementation();
-    }
-  }
+/// Collection from our database.
+abstract class Database {
+
+  /// Constructs a new Database instance of [_SQLiteImplementation].
+  factory Database.sqlite({
+    required List<Table> tables, required String nameDataBase})=>
+      _SQLiteImplementation(tables: tables, nameDataBase: nameDataBase);
+  
+  /// Constructs a new Database instance of [_FakeImplementation].
+  factory Database.fake() => _FakeImplementation();
+
 
   /// Retrieves the given collection from the database.
-  /// * [collectionPath] the path to the collection to retrieve
+  /// * [collectionPath] The path to the collection to retrieve.
   ///   eg: 
   ///    # For no sql implementation.
-  ///       - collection_name/
+  ///       - collectionName, filter?
+  ///    # For sql implementation.
+  ///       - tableName, filter?
   ///    # For no sql implementation.
   ///       - table_name/book/chapter/verser
   ///       - table_name/book/chapter
   ///       - table_name/book
   /// * return 
-  ///     # Succes : List<Map<String, dynamic>>
+  ///     # Succes : Get record in our database as List<Map<String, dynamic>
   ///     # Echec : Null
   Future<List<Map<String, dynamic>>?> getCollection(String collectionPath, 
-    {List<Table>? tables, String? nameDataBase, List<SQLiteQuery>? filters});
+    {List<DatabaseQuery>? filters});
 
   /// Create collection from the database.
   /// * [collectionPath] the path to the collection to create
   ///   eg: 
   ///    # For no sql implementation.
-  ///       - collection_name/
+  ///       - collection_name, recordMap
   ///    # For  sql implementation [collectionPath].
-  ///       - table_name/
+  ///       - table_name, recordMap
   /// * return boolean
   ///     # Succes : true
-  ///     # Echec : false, null
-  Future<bool?> createRecord(
+  ///     # Echec : false
+  Future<bool> createRecord(
       String collectionPath, Map<String, dynamic> recordMap);
 
   /// Remove collection from the database.
   /// * [collectionPath] the path to the collection to remove
   ///   eg: 
   ///    # For no sql implementation.
-  ///       - collection_name/
-  ///    # For no sql implementation.
-  ///       - table_name/
+  ///       - collectionName , documentId
+  ///    # For sql implementation.
+  ///       - tableName , documentId
   /// * return boolean
   ///     # Succes : true
-  ///     # Echec : false, null
-  Future<bool?> removeRecordByPath(
+  ///     # Echec : false
+  Future<bool> removeRecordByPath(
       String collectionPath, int documentId);
-}
-
-/// Contains the list of available type of database to use.
-enum DatabaseType {
-  /// Represents the use of sqflite implementation.
-  sQflite,
-
-  /// Represents the use of fake implementation for debugging.
-  fake
 }

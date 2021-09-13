@@ -22,22 +22,13 @@ environment:
   flutter: '>=2.0.4 <3.0.0'
 
 dependencies:
-  # Flutter plugin for Cloud Firestore, a cloud-hosted, noSQL database with live synchronization
-  # and offline support on Android and iOS.
-  # platform:
-  #  - Flutter: Android iOS macOS web
-  cloud_firestore: ^2.5.0
-
+ 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   # platform:
   #  - Flutter: Android iOS Linux macOS Windows Web
   cupertino_icons: ^1.0.2
 
-  # A Flutter plugin to use the Firebase Cloud Storage API.
-  # platform:
-  #  - Flutter: Android iOS macOS web
-  firebase_storage: ^10.0.3
   flutter:
     sdk: flutter
   # Ultimate Data Generator (UDG) is the most complete offline data generator for prototyping using Flutter.

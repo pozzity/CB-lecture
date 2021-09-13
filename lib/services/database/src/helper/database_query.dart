@@ -2,9 +2,9 @@ part of database_helper;
 
 
 /// A class query for record info related data.
-class SQLiteQuery {
+class DatabaseQuery {
   /// Constructs the query field class.
-  SQLiteQuery(this.key, this.value, this.condition);
+  DatabaseQuery(this.key, this.value, this.condition);
 
   /// The value of the field name.
   final String key;
@@ -14,13 +14,13 @@ class SQLiteQuery {
 
   /// Database querying condition to be applied on the
   /// value of the field parameter.
-  final SQLiteFieldCondition condition;
+  final DatabaseFieldCondition condition;
 
 }
 
 
 /// A document field specification for querying.
-enum SQLiteFieldCondition {
+enum DatabaseFieldCondition {
   /// Condition that will be used to check if
   /// field value matches the database value.
   isEqualTo,
