@@ -51,7 +51,7 @@ class _SQLiteImplementation implements Database {
       List<DatabaseQuery>? filters = const <DatabaseQuery>[]}) async {
     final sqlite.Database? db = await database;
     final StringBuffer bufferWhere = StringBuffer();
-    final List<String> whereArgs = <String>[];
+    final List<dynamic> whereArgs = <String>[];
     for (final DatabaseQuery filter in filters!) {
       switch (filter.condition) {
         case DatabaseFieldCondition.isEqualTo:
