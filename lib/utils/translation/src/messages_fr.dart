@@ -18,7 +18,7 @@ final MessageLookup messages = new MessageLookup();
 ///
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
-// Class to allow all translations in French
+/// Class to allow all translations in French
 class MessageLookup extends MessageLookupByLibrary {
   ///getter for selected language
   String get localeName => 'fr';
@@ -36,24 +36,24 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "acts" : MessageLookupByLibrary.simpleMessage("Actes"),
-    "add_translation" : MessageLookupByLibrary
+    "addTranslation" : MessageLookupByLibrary
                   .simpleMessage("Ajouter une traduction"),
     "amos" : MessageLookupByLibrary.simpleMessage("Amos"),
     "appName" : MessageLookupByLibrary
                   .simpleMessage("Calendrier biblique"),
-    "appropriate_translation" : MessageLookupByLibrary
+    "appropriateTranslation" : MessageLookupByLibrary
                   .simpleMessage("La traduction appropriée"),
     "calendar" : MessageLookupByLibrary.simpleMessage("Calendrier"),
     "cancel" : MessageLookupByLibrary.simpleMessage("Annuler"),
     "colossians" : MessageLookupByLibrary.simpleMessage("Colossiens"),
-    "confirm_delete" : MessageLookupByLibrary
+    "confirmDelete" : MessageLookupByLibrary
                   .simpleMessage("Confirmation de suppression"),
     "daniel" : MessageLookupByLibrary.simpleMessage("Daniel"),
     "def" : MessageLookupByLibrary.simpleMessage("Défaut"),
     "delete" : MessageLookupByLibrary.simpleMessage("Supprimer"),
     "deuteronomy" : MessageLookupByLibrary.simpleMessage("Deuteronome"),
     "download" : MessageLookupByLibrary.simpleMessage("Télécharger"),
-    "download_least_one_translate" : MessageLookupByLibrary
+    "downloadLeastOneTranslate" : MessageLookupByLibrary
                   .simpleMessage("Veuillez télécharger au moins une traduction "
                   "pour accéder aux fonctionnalités de l\'application"),
     "downloaded" : MessageLookupByLibrary.simpleMessage("Téléchargé"),
@@ -62,7 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "english" : MessageLookupByLibrary.simpleMessage("Anglais"),
     "ephesians" : MessageLookupByLibrary.simpleMessage("Ephésiens"),
     "error" : MessageLookupByLibrary.simpleMessage("Erreur"),
-    "error_download_data_msg" : MessageLookupByLibrary
+    "errorDownloadDataMsg" : MessageLookupByLibrary
                   .simpleMessage("Erreur lors de la récupération des données. "
                   "Veuillez vérifier votre accès Internet ou réessayer "
                   "plus tard. Si le problème persiste,"),
@@ -71,7 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "exodus" : MessageLookupByLibrary.simpleMessage("Exode"),
     "ezekiel" : MessageLookupByLibrary.simpleMessage("Ezéchiel"),
     "ezra" : MessageLookupByLibrary.simpleMessage("Esdras"),
-    "favorite_not_found" : MessageLookupByLibrary
+    "favoriteNotFound" : MessageLookupByLibrary
                   .simpleMessage("Favoris non trouvés"),
     "favorites" : MessageLookupByLibrary.simpleMessage("Favoris"),
     "french" : MessageLookupByLibrary.simpleMessage("Français"),
@@ -101,53 +101,53 @@ class MessageLookup extends MessageLookupByLibrary {
     "luke" : MessageLookupByLibrary.simpleMessage("Luc"),
     "malachi" : MessageLookupByLibrary.simpleMessage("Malachie"),
     "mark" : MessageLookupByLibrary.simpleMessage("Marc"),
-    "mark_as_principal" : MessageLookupByLibrary
+    "markAsPrincipal" : MessageLookupByLibrary
                   .simpleMessage("Définir comme traduction principal"),
     "matthew" : MessageLookupByLibrary.simpleMessage("Matthieu"),
     "micah" : MessageLookupByLibrary.simpleMessage("Michée"),
-    "module_bible_content" : MessageLookupByLibrary
+    "moduleBibleContent" : MessageLookupByLibrary
                   .simpleMessage("Dans le menu «traductions», vous avez "
                   "la possibilité de télécharger une traduction ou plusieurs " 
                   "traductions selon vos préférences. Vous avez également " 
                   "la possibilité de réaliser un filtre: "
                   "il est rapide et efficace 😇"),
-    "module_bible_header" : MessageLookupByLibrary
+    "moduleBibleHeader" : MessageLookupByLibrary
                   .simpleMessage("Un accès libre et "
                   "gratuit a plusieur traduction!"),
-    "module_calendar_content" : MessageLookupByLibrary
+    "moduleCalendarContent" : MessageLookupByLibrary
                   .simpleMessage("L\'application propose des versets "
                   "quotidiens de votre communauté que vous pouvez "
                   "lire et partager avec vos proches."),
-    "module_calendar_header" : MessageLookupByLibrary
+    "moduleCalendarHeader" : MessageLookupByLibrary
                   .simpleMessage("Lecture quotidienne"),
-    "module_welcome_content" : MessageLookupByLibrary
+    "moduleWelcomeContent" : MessageLookupByLibrary
                   .simpleMessage("Cette application a été conçue pour "
                   "permettre à \n \t- Toute communauté croyante de créer "
                   "et de partager des publications avec ses abonnés \n \t- "
                   "Toute famille pour améliorer la prise de conscience de "
                   "la parole \n \t- Toute personne pour mieux analyser "
                   "et partager les écritures St"),
-    "module_welcome_header" : MessageLookupByLibrary
+    "moduleWelcomeHeader" : MessageLookupByLibrary
                   .simpleMessage("Bienvenue!"),
     "monday" : MessageLookupByLibrary.simpleMessage("Lundi"),
     "nahum" : MessageLookupByLibrary.simpleMessage("Nahum"),
     "nehemiah" : MessageLookupByLibrary.simpleMessage("Néthémie"),
     "next" : MessageLookupByLibrary.simpleMessage("Suivant"),
-    "no_translation" : MessageLookupByLibrary
+    "noTranslation" : MessageLookupByLibrary
                   .simpleMessage("Aucune traduction"),
-    "not_found_in_current_translation" : MessageLookupByLibrary
+    "notFoundInCurrentTranslation" : MessageLookupByLibrary
                   .simpleMessage("introuvable dans la traduction "
                   "actuelle. S'il vous plaît"),
     "numbers" : MessageLookupByLibrary.simpleMessage("Nombres"),
     "obadiah" : MessageLookupByLibrary.simpleMessage("Abdias"),
     "ok" : MessageLookupByLibrary.simpleMessage("D'accord"),
-    "one_chronicles" : MessageLookupByLibrary.simpleMessage("1 Chroniques"),
-    "one_corinthians" : MessageLookupByLibrary.simpleMessage("1 Corinthiens"),
-    "one_john" : MessageLookupByLibrary.simpleMessage("1 Jean"),
-    "one_kings" : MessageLookupByLibrary.simpleMessage("1 Rois"),
-    "one_peter" : MessageLookupByLibrary.simpleMessage("1 Pierre"),
-    "one_samuel" : MessageLookupByLibrary.simpleMessage("1 Samuel"),
-    "one_thessalonians" : MessageLookupByLibrary
+    "oneChronicles" : MessageLookupByLibrary.simpleMessage("1 Chroniques"),
+    "oneCorinthians" : MessageLookupByLibrary.simpleMessage("1 Corinthiens"),
+    "oneJohn" : MessageLookupByLibrary.simpleMessage("1 Jean"),
+    "oneKings" : MessageLookupByLibrary.simpleMessage("1 Rois"),
+    "onePeter" : MessageLookupByLibrary.simpleMessage("1 Pierre"),
+    "oneSamuel" : MessageLookupByLibrary.simpleMessage("1 Samuel"),
+    "oneThessalonians" : MessageLookupByLibrary
                   .simpleMessage("1 Thessaloniciens"),
     "one_timothy" : MessageLookupByLibrary.simpleMessage("1 Timothée"),
     "or" : MessageLookupByLibrary.simpleMessage("Ou"),
@@ -155,15 +155,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "philippians" : MessageLookupByLibrary.simpleMessage("Philippiens"),
     "proverbs" : MessageLookupByLibrary.simpleMessage("Proverbes"),
     "psalms" : MessageLookupByLibrary.simpleMessage("Psaumes"),
-    "really_want_it" : MessageLookupByLibrary
+    "reallyWantIt" : MessageLookupByLibrary
                   .simpleMessage("Voulez-vous vraiment "
                   "supprimer la traduction"),
-    "report_body" : MessageLookupByLibrary
+    "reportBody" : MessageLookupByLibrary
                   .simpleMessage("Entrez une description "
                   "complète de votre erreur"),
-    "report_can_Send" : MessageLookupByLibrary
+    "reportCanSend" : MessageLookupByLibrary
                   .simpleMessage("Impossible d\'envoyer un rapport"),
-    "report_subject" : MessageLookupByLibrary
+    "reportSubject" : MessageLookupByLibrary
                   .simpleMessage("L\'application № 099 ne "
                   "parvient pas à installer la traduction"),
     "revelation" : MessageLookupByLibrary.simpleMessage("Apocalypse"),
@@ -172,13 +172,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "saturday" : MessageLookupByLibrary.simpleMessage("Samedi"),
     "save" : MessageLookupByLibrary.simpleMessage("Enregistrer"),
     "select" : MessageLookupByLibrary.simpleMessage("Sélectionner"),
-    "select_preferred_lang" : MessageLookupByLibrary
+    "selectPreferredLang" : MessageLookupByLibrary
                   .simpleMessage("Veuillez sélectionner votre langue préférée"),
-    "send_report" : MessageLookupByLibrary.simpleMessage("Envoyez un rapport"),
+    "sendReport" : MessageLookupByLibrary.simpleMessage("Envoyez un rapport"),
     "share" : m0,
     "shareMsg" : m1,
     "size" : MessageLookupByLibrary.simpleMessage("Taille"),
-    "song_of_songs" : MessageLookupByLibrary
+    "songOfSongs" : MessageLookupByLibrary
                   .simpleMessage("Cantique des Cantiques"),
     "start" : MessageLookupByLibrary.simpleMessage("Commencer"),
     "sunday" : MessageLookupByLibrary.simpleMessage("Dimanche"),
@@ -186,28 +186,28 @@ class MessageLookup extends MessageLookupByLibrary {
     "thursday" : MessageLookupByLibrary.simpleMessage("Jeudi"),
     "titus" : MessageLookupByLibrary.simpleMessage("Tite"),
     "translation" : MessageLookupByLibrary.simpleMessage("Traduction"),
-    "tree_john" : MessageLookupByLibrary.simpleMessage("3 Jean"),
+    "treeJohn" : MessageLookupByLibrary.simpleMessage("3 Jean"),
     "tuesday" : MessageLookupByLibrary.simpleMessage("Mardi"),
-    "two_chronicles" : MessageLookupByLibrary.simpleMessage("2 Chroniques"),
-    "two_corinthians" : MessageLookupByLibrary.simpleMessage("2 Corinthiens"),
-    "two_john" : MessageLookupByLibrary.simpleMessage("2 Jean"),
-    "two_kings" : MessageLookupByLibrary.simpleMessage("2 Rois"),
-    "two_peter" : MessageLookupByLibrary.simpleMessage("2 Pierre"),
-    "two_samuel" : MessageLookupByLibrary.simpleMessage("2 Samuel"),
-    "two_thessalonians" : MessageLookupByLibrary
+    "twoChronicles" : MessageLookupByLibrary.simpleMessage("2 Chroniques"),
+    "twoCorinthians" : MessageLookupByLibrary.simpleMessage("2 Corinthiens"),
+    "twoJohn" : MessageLookupByLibrary.simpleMessage("2 Jean"),
+    "twoKings" : MessageLookupByLibrary.simpleMessage("2 Rois"),
+    "twoPeter" : MessageLookupByLibrary.simpleMessage("2 Pierre"),
+    "twoSamuel" : MessageLookupByLibrary.simpleMessage("2 Samuel"),
+    "twoThessalonians" : MessageLookupByLibrary
                   .simpleMessage("2 Thessaloniciens"),
-    "two_timothy" : MessageLookupByLibrary.simpleMessage("2 Timothée"),
+    "twoTimothy" : MessageLookupByLibrary.simpleMessage("2 Timothée"),
     "updating" : MessageLookupByLibrary.simpleMessage("Mise à jour en cours"),
-    "updating_db" : MessageLookupByLibrary
+    "updatingDb" : MessageLookupByLibrary
                   .simpleMessage("Mise à jour de la base de données en cours"),
     "verse" : MessageLookupByLibrary.simpleMessage("Verset"),
     "wednesday" : MessageLookupByLibrary.simpleMessage("Mercredi"),
-    "you_can_choice_translate_end" : MessageLookupByLibrary.simpleMessage(""),
-    "you_can_choice_translate_middle" : MessageLookupByLibrary
+    "youCanChoiceTranslateEnd" : MessageLookupByLibrary.simpleMessage(""),
+    "youCanChoicetranslateMiddle" : MessageLookupByLibrary
                   .simpleMessage("ou"),
-    "you_can_choice_translate_start" : MessageLookupByLibrary
+    "youCanChoicetranslateStart" : MessageLookupByLibrary
                   .simpleMessage("Vous pouvez télécharger la version"),
-    "you_have_x_translation" : m2,
+    "youHaveXtranslation" : m2,
     "zechariah" : MessageLookupByLibrary.simpleMessage("Zacharie"),
     "zephaniah" : MessageLookupByLibrary.simpleMessage("Sophonie")
   };

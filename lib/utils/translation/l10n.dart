@@ -41,1187 +41,1055 @@ class S {
   /// translation of word or some Text.
   /// 
   /// 
-  String get home {
-    return Intl.message(
+  ////
+  String get home => Intl.message(
       'Home',
       name: 'home',
       desc: '',
       args: [],
     );
-  }
 
   
-  String get calendar {
-    return Intl.message(
+  ////
+  String get calendar => Intl.message(
       'Calendar',
       name: 'calendar',
       desc: '',
       args: [],
     );
-  }
 
   
-  String get favorites {
-    return Intl.message(
+  ////
+  String get favorites => Intl.message(
       'Favorites',
       name: 'favorites',
       desc: '',
       args: [],
     );
-  }
 
-  String get translation {
-    return Intl.message(
+  ////
+  String get translation => Intl.message(
       'translation',
       name: 'translation',
       desc: '',
       args: [],
     );
-  }
 
-  String get evaluate {
-    return Intl.message(
+  ////
+  String get evaluate => Intl.message(
       'Rate app',
       name: 'evaluate',
       desc: '',
       args: [],
     );
-  }
-
-  String share(Object lapp) {
-    return Intl.message(
+    
+  ///
+  String share(Object lapp) => Intl.message(
       'Share $lapp',
       name: 'share',
       desc: '',
       args: [lapp],
     );
-  }
-
-  String shareMsg(Object url) {
-    return Intl.message(
+  /// 
+  String shareMsg(Object url) => Intl.message(
       'Hey! here is a very interesting '
       'evangelistic sharing application 👉 $url',
       name: 'shareMsg',
       desc: '',
       args: [url],
     );
-  }
 
-  String get appName {
-    return Intl.message(
+  ////
+  String get appName => Intl.message(
       'Biblical calendar',
       name: 'appName',
       desc: '',
       args: [],
     );
-  }
 
-  String get lapp {
-    return Intl.message(
+  ////
+  String get lapp => Intl.message(
       'the application',
       name: 'lapp',
       desc: '',
       args: [],
     );
-  }
 
-  String get verse {
-    return Intl.message(
+  ////
+  String get verse => Intl.message(
       'Verse',
       name: 'verse',
       desc: '',
       args: [],
     );
-  }
 
-  String get no_translation {
-    return Intl.message(
+  ////
+  String get noTranslation => Intl.message(
       'No translation',
-      name: 'no_translation',
+      name: 'noTranslation',
       desc: '',
       args: [],
     );
-  }
 
-  String get download_least_one_translate {
-    return Intl.message(
+  ////
+  String get downloadLeastOneTranslate => Intl.message(
       'Please download at least one translation '
       'to access the application features',
-      name: 'download_least_one_translate',
+      name: 'downloadLeastOneTranslate',
       desc: '',
       args: [],
     );
-  }
 
-  String get ok {
-    return Intl.message(
+  ////
+  String get ok => Intl.message(
       'Okay',
       name: 'ok',
       desc: '',
       args: [],
     );
-  }
 
-  String get confirm_delete {
-    return Intl.message(
+  ////
+  String get confirmDelete => Intl.message(
       'Confirmation of deletion',
-      name: 'confirm_delete',
+      name: 'confirmDelete',
       desc: '',
       args: [],
     );
-  }
 
-  String get really_want_it {
-    return Intl.message(
+  ////
+  String get reallyWantIt => Intl.message(
       'Are you sure you want to delete the translation',
-      name: 'really_want_it',
+      name: 'reallyWantIt',
       desc: '',
       args: [],
     );
-  }
 
-  String get delete {
-    return Intl.message(
+  ////
+  String get delete => Intl.message(
       'Delete',
       name: 'delete',
       desc: '',
       args: [],
     );
-  }
 
-  String get cancel {
-    return Intl.message(
+  ////
+  String get cancel => Intl.message(
       'Cancel',
       name: 'cancel',
       desc: '',
       args: [],
     );
-  }
-
-  String you_have_x_translation(Object count, Object add_s) {
-    return Intl.message(
+  ///
+  String youHaveXtranslation(Object count, Object add_s) => Intl.message(
       'You have $count translation$add_s',
-      name: 'you_have_x_translation',
+      name: 'youHaveXtranslation',
       desc: '',
       args: [count, add_s],
     );
-  }
 
-  String get add_translation {
-    return Intl.message(
+  ////
+  String get addTranslation => Intl.message(
       'Add translation',
-      name: 'add_translation',
+      name: 'addTranslation',
       desc: '',
       args: [],
     );
-  }
 
-  String get def {
-    return Intl.message(
+  ////
+  String get def => Intl.message(
       'Default',
       name: 'def',
       desc: '',
       args: [],
     );
-  }
 
-  String get mark_as_principal {
-    return Intl.message(
+  ////
+  String get markAsPrincipal => Intl.message(
       'set as main translation',
-      name: 'mark_as_principal',
+      name: 'markAsPrincipal',
       desc: '',
       args: [],
     );
-  }
 
-  String get favorite_not_found {
-    return Intl.message(
+  ////
+  String get favoriteNotFound => Intl.message(
       'favorites not found',
-      name: 'favorite_not_found',
+      name: 'favoriteNotFound',
       desc: '',
       args: [],
     );
-  }
 
-  String get text_of_d {
-    return Intl.message(
+  ////
+  String get text_of_d => Intl.message(
       'Text of the Day',
       name: 'text_of_d',
       desc: '',
       args: [],
     );
-  }
 
-  String get monday {
-    return Intl.message(
+  ////
+  String get monday => Intl.message(
       'Monday',
       name: 'monday',
       desc: '',
       args: [],
     );
-  }
 
-  String get tuesday {
-    return Intl.message(
+  ////
+  String get tuesday => Intl.message(
       'Tuesday',
       name: 'tuesday',
       desc: '',
       args: [],
     );
-  }
 
-  String get wednesday {
-    return Intl.message(
+  ////
+  String get wednesday => Intl.message(
       'Wednesday',
       name: 'wednesday',
       desc: '',
       args: [],
     );
-  }
 
-  String get thursday {
-    return Intl.message(
+  ////
+  String get thursday => Intl.message(
       'Thursday',
       name: 'thursday',
       desc: '',
       args: [],
     );
-  }
 
-  String get friday {
-    return Intl.message(
+  ////
+  String get friday => Intl.message(
       'Friday',
       name: 'friday',
       desc: '',
       args: [],
     );
-  }
 
-  String get saturday {
-    return Intl.message(
+  ////
+  String get saturday => Intl.message(
       'Saturday',
       name: 'saturday',
       desc: '',
       args: [],
     );
-  }
 
-  String get sunday {
-    return Intl.message(
+  ////
+  String get sunday => Intl.message(
       'Sunday',
       name: 'sunday',
       desc: '',
       args: [],
     );
-  }
 
-  String get not_found_in_current_translation {
-    return Intl.message(
+  ////
+  String get notFoundInCurrentTranslation => Intl.message(
       'not found in the current translation. Please',
-      name: 'not_found_in_current_translation',
+      name: 'notFoundInCurrentTranslation',
       desc: '',
       args: [],
     );
-  }
 
-  String get select {
-    return Intl.message(
+  ////
+  String get select => Intl.message(
       'Select',
       name: 'select',
       desc: '',
       args: [],
     );
-  }
 
-  String get or {
-    return Intl.message(
+  ////
+  String get or => Intl.message(
       'Or',
       name: 'or',
       desc: '',
       args: [],
     );
-  }
 
-  String get download {
-    return Intl.message(
+  ////
+  String get download => Intl.message(
       'Download',
       name: 'download',
       desc: '',
       args: [],
     );
-  }
 
-  String get appropriate_translation {
-    return Intl.message(
+  ////
+  String get appropriateTranslation => Intl.message(
       'The appropriate translation',
-      name: 'appropriate_translation',
+      name: 'appropriateTranslation',
       desc: '',
       args: [],
     );
-  }
 
-  String get language {
-    return Intl.message(
+  ////
+  String get language => Intl.message(
       'Language',
       name: 'language',
       desc: '',
       args: [],
     );
-  }
 
-  String get size {
-    return Intl.message(
+  ////
+  String get size => Intl.message(
       'Size',
       name: 'size',
       desc: '',
       args: [],
     );
-  }
 
-  String get downloaded {
-    return Intl.message(
+  ////
+  String get downloaded => Intl.message(
       'Downloaded',
       name: 'downloaded',
       desc: '',
       args: [],
     );
-  }
 
-  String get downloading {
-    return Intl.message(
+  ////
+  String get downloading => Intl.message(
       'Downloading',
       name: 'downloading',
       desc: '',
       args: [],
     );
-  }
 
-  String get updating {
-    return Intl.message(
+  ////
+  String get updating => Intl.message(
       'Update in progress',
       name: 'updating',
       desc: '',
       args: [],
     );
-  }
 
-  String get updating_db {
-    return Intl.message(
+  ////
+  String get updatingDb => Intl.message(
       'Database update in progress',
-      name: 'updating_db',
+      name: 'updatingDb',
       desc: '',
       args: [],
     );
-  }
 
-  String get error {
-    return Intl.message(
+  ////
+  String get error => Intl.message(
       'Error',
       name: 'error',
       desc: '',
       args: [],
     );
-  }
 
-  String get error_download_data_msg {
-    return Intl.message(
+  ////
+  String get errorDownloadDataMsg => Intl.message(
       'Error while retrieving data. Please check '
       'your internet access or try again later. If the problem persists,',
-      name: 'error_download_data_msg',
+      name: 'errorDownloadDataMsg',
       desc: '',
       args: [],
     );
-  }
 
-  String get send_report {
-    return Intl.message(
+  ////
+  String get sendReport => Intl.message(
       'Send a report',
-      name: 'send_report',
+      name: 'sendReport',
       desc: '',
       args: [],
     );
-  }
 
-  String get report_subject {
-    return Intl.message(
+  ////
+  String get reportSubject => Intl.message(
       'The application № 099 fails to install the translation',
-      name: 'report_subject',
+      name: 'reportSubject',
       desc: '',
       args: [],
     );
-  }
 
-  String get report_body {
-    return Intl.message(
+  ////
+  String get reportBody => Intl.message(
       'Enter a full description of your error',
-      name: 'report_body',
+      name: 'reportBody',
       desc: '',
       args: [],
     );
-  }
 
-  String get report_can_Send {
-    return Intl.message(
+  ////
+  String get reportCanSend => Intl.message(
       'Can\'t send report',
-      name: 'report_can_Send',
+      name: 'reportCanSend',
       desc: '',
       args: [],
     );
-  }
 
-  String get next {
-    return Intl.message(
+  ////
+  String get next => Intl.message(
       'Next',
       name: 'next',
       desc: '',
       args: [],
     );
-  }
 
-  String get ignore {
-    return Intl.message(
+  ////
+  String get ignore => Intl.message(
       'Ignore',
       name: 'ignore',
       desc: '',
       args: [],
     );
-  }
 
-  String get start {
-    return Intl.message(
+  ////
+  String get start => Intl.message(
       'Start',
       name: 'start',
       desc: '',
       args: [],
     );
-  }
 
-  String get save {
-    return Intl.message(
+  ////
+  String get save => Intl.message(
       'Save',
       name: 'save',
       desc: '',
       args: [],
     );
-  }
 
-  String get module_calendar_header {
-    return Intl.message(
+  ////
+  String get moduleCalendarHeader => Intl.message(
       'Daily reading',
-      name: 'module_calendar_header',
+      name: 'moduleCalendarHeader',
       desc: '',
       args: [],
     );
-  }
 
-  String get module_calendar_content {
-    return Intl.message(
+  ////
+  String get moduleCalendarContent => Intl.message(
       'The application offers daily verses from your '
       'community that you can read and share with your loved ones.',
-      name: 'module_calendar_content',
+      name: 'moduleCalendarContent',
       desc: '',
       args: [],
     );
-  }
 
-  String get module_bible_header {
-    return Intl.message(
+  ////
+  String get moduleBibleHeader => Intl.message(
       'Free access to several translations!',
-      name: 'module_bible_header',
+      name: 'moduleBibleHeader',
       desc: '',
       args: [],
     );
-  }
 
-  String get module_bible_content {
-    return Intl.message(
+  ////
+  String get moduleBibleContent => Intl.message(
       'In the "translations" menu, you have the possibility '
       'of downloading a translation or several translations according '
       'to your preferences. You also have the possibility of '
       'making a filter: it is fast and efficient 😇',
-      name: 'module_bible_content',
+      name: 'moduleBibleContent',
       desc: '',
       args: [],
     );
-  }
 
-  String get module_welcome_content {
-    return Intl.message(
+  ////
+  String get moduleWelcomeContent => Intl.message(
       'This application has been designed to allow \n 	- Any believing community to create and share publications with their followers \n 	- Any family to improve awareness of speech \n 	- Any person to better analyze and share the St scriptures',
-      name: 'module_welcome_content',
+      name: 'moduleWelcomeContent',
       desc: '',
       args: [],
     );
-  }
 
-  String get module_welcome_header {
-    return Intl.message(
+  ////
+  String get moduleWelcomeHeader => Intl.message(
       'Welcome!',
-      name: 'module_welcome_header',
+      name: 'moduleWelcomeHeader',
       desc: '',
       args: [],
     );
-  }
 
-  String get select_preferred_lang {
-    return Intl.message(
+  ////
+  String get selectPreferredLang => Intl.message(
       'Please select your preferred language',
-      name: 'select_preferred_lang',
+      name: 'selectPreferredLang',
       desc: '',
       args: [],
     );
-  }
 
-  String get french {
-    return Intl.message(
+  ////
+  String get french => Intl.message(
       'French',
       name: 'french',
       desc: '',
       args: [],
     );
-  }
 
-  String get english {
-    return Intl.message(
+  ////
+  String get english => Intl.message(
       'English',
       name: 'english',
       desc: '',
       args: [],
     );
-  }
 
-  String get one_timothy {
-    return Intl.message(
+  ////
+  String get one_timothy => Intl.message(
       '1 Timothy',
       name: 'one_timothy',
       desc: '',
       args: [],
     );
-  }
 
-  String get psalms {
-    return Intl.message(
+  ////
+  String get psalms => Intl.message(
       'Psalms',
       name: 'psalms',
       desc: '',
       args: [],
     );
-  }
 
-  String get genesis {
-    return Intl.message(
+  ////
+  String get genesis => Intl.message(
       'Genesis',
       name: 'genesis',
       desc: '',
       args: [],
     );
-  }
 
-  String get exodus {
-    return Intl.message(
+  ////
+  String get exodus => Intl.message(
       'Exodus',
       name: 'exodus',
       desc: '',
       args: [],
     );
-  }
 
-  String get leviticus {
-    return Intl.message(
+  ////
+  String get leviticus => Intl.message(
       'Leviticus',
       name: 'leviticus',
       desc: '',
       args: [],
     );
-  }
 
-  String get numbers {
-    return Intl.message(
+  ////
+  String get numbers => Intl.message(
       'Numbers',
       name: 'numbers',
       desc: '',
       args: [],
     );
-  }
 
-  String get deuteronomy {
-    return Intl.message(
+  ////
+  String get deuteronomy => Intl.message(
       'Deuteronomy',
       name: 'deuteronomy',
       desc: '',
       args: [],
     );
-  }
 
-  String get joshua {
-    return Intl.message(
+  ////
+  String get joshua => Intl.message(
       'Joshua',
       name: 'joshua',
       desc: '',
       args: [],
     );
-  }
 
-  String get judges {
-    return Intl.message(
+  ////
+  String get judges => Intl.message(
       'Judges',
       name: 'judges',
       desc: '',
       args: [],
     );
-  }
 
-  String get ruth {
-    return Intl.message(
+  ////
+  String get ruth => Intl.message(
       'Ruth',
       name: 'ruth',
       desc: '',
       args: [],
     );
-  }
 
-  String get one_samuel {
-    return Intl.message(
+  ////
+  String get oneSamuel => Intl.message(
       '1 Samuel',
-      name: 'one_samuel',
+      name: 'oneSamuel',
       desc: '',
       args: [],
     );
-  }
 
-  String get two_samuel {
-    return Intl.message(
+  ////
+  String get twoSamuel => Intl.message(
       '2 Samuel',
-      name: 'two_samuel',
+      name: 'twoSamuel',
       desc: '',
       args: [],
     );
-  }
 
-  String get one_kings {
-    return Intl.message(
+  ////
+  String get oneKings => Intl.message(
       '1 Kings',
-      name: 'one_kings',
+      name: 'oneKings',
       desc: '',
       args: [],
     );
-  }
 
-  String get two_kings {
-    return Intl.message(
+  ////
+  String get twoKings => Intl.message(
       '2 Kings',
-      name: 'two_kings',
+      name: 'twoKings',
       desc: '',
       args: [],
     );
-  }
 
-  String get one_chronicles {
-    return Intl.message(
+  ////
+  String get oneChronicles => Intl.message(
       '1 Chronicles',
-      name: 'one_chronicles',
+      name: 'oneChronicles',
       desc: '',
       args: [],
     );
-  }
 
-  String get two_chronicles {
-    return Intl.message(
+  ////
+  String get twoChronicles => Intl.message(
       '2 Chronicles',
-      name: 'two_chronicles',
+      name: 'twoChronicles',
       desc: '',
       args: [],
     );
-  }
 
-  String get ezra {
-    return Intl.message(
+  ////
+  String get ezra => Intl.message(
       'Ezra',
       name: 'ezra',
       desc: '',
       args: [],
     );
-  }
 
-  String get nehemiah {
-    return Intl.message(
+  ////
+  String get nehemiah => Intl.message(
       'Nehemiah',
       name: 'nehemiah',
       desc: '',
       args: [],
     );
-  }
 
-  String get esther {
-    return Intl.message(
+  ////
+  String get esther => Intl.message(
       'Esther',
       name: 'esther',
       desc: '',
       args: [],
     );
-  }
 
-  String get job {
-    return Intl.message(
+  ////
+  String get job => Intl.message(
       'Job',
       name: 'job',
       desc: '',
       args: [],
     );
-  }
 
-  String get proverbs {
-    return Intl.message(
+  ////
+  String get proverbs => Intl.message(
       'Proverbs',
       name: 'proverbs',
       desc: '',
       args: [],
     );
-  }
 
-  String get ecclesiastes {
-    return Intl.message(
+  ////
+  String get ecclesiastes => Intl.message(
       'Ecclesiastes',
       name: 'ecclesiastes',
       desc: '',
       args: [],
     );
-  }
 
-  String get song_of_songs {
-    return Intl.message(
+  ////
+  String get songOfSongs => Intl.message(
       'Song of Songs',
-      name: 'song_of_songs',
+      name: 'songOfSongs',
       desc: '',
       args: [],
     );
-  }
 
-  String get isaiah {
-    return Intl.message(
+  ////
+  String get isaiah => Intl.message(
       'Isaiah',
       name: 'isaiah',
       desc: '',
       args: [],
     );
-  }
 
-  String get jeremiah {
-    return Intl.message(
+  ////
+  String get jeremiah => Intl.message(
       'Jeremiah',
       name: 'jeremiah',
       desc: '',
       args: [],
     );
-  }
 
-  String get lamentations {
-    return Intl.message(
+  ////
+  String get lamentations => Intl.message(
       'Lamentations',
       name: 'lamentations',
       desc: '',
       args: [],
     );
-  }
 
-  String get ezekiel {
-    return Intl.message(
+  ////
+  String get ezekiel => Intl.message(
       'Ezekiel',
       name: 'ezekiel',
       desc: '',
       args: [],
     );
-  }
 
-  String get daniel {
-    return Intl.message(
+  ////
+  String get daniel => Intl.message(
       'Daniel',
       name: 'daniel',
       desc: '',
       args: [],
     );
-  }
 
-  String get hosea {
-    return Intl.message(
+  ////
+  String get hosea => Intl.message(
       'HHosea',
       name: 'hosea',
       desc: '',
       args: [],
     );
-  }
 
-  String get joel {
-    return Intl.message(
+  ////
+  String get joel => Intl.message(
       'Joel',
       name: 'joel',
       desc: '',
       args: [],
     );
-  }
 
-  String get amos {
-    return Intl.message(
+  ////
+  String get amos => Intl.message(
       'Amos',
       name: 'amos',
       desc: '',
       args: [],
     );
-  }
 
-  String get obadiah {
-    return Intl.message(
+  ////
+  String get obadiah => Intl.message(
       'Obadiah',
       name: 'obadiah',
       desc: '',
       args: [],
     );
-  }
 
-  String get jonah {
-    return Intl.message(
+  ////
+  String get jonah => Intl.message(
       'Jonah',
       name: 'jonah',
       desc: '',
       args: [],
     );
-  }
 
-  String get micah {
-    return Intl.message(
+  ////
+  String get micah => Intl.message(
       'Micah',
       name: 'micah',
       desc: '',
       args: [],
     );
-  }
 
-  String get nahum {
-    return Intl.message(
+  ////
+  String get nahum => Intl.message(
       'Nahum',
       name: 'nahum',
       desc: '',
       args: [],
     );
-  }
 
-  String get habakkuk {
-    return Intl.message(
+  ////
+  String get habakkuk => Intl.message(
       'Habakkuk',
       name: 'habakkuk',
       desc: '',
       args: [],
     );
-  }
 
-  String get zephaniah {
-    return Intl.message(
+  ////
+  String get zephaniah => Intl.message(
       'Zephaniah',
       name: 'zephaniah',
       desc: '',
       args: [],
     );
-  }
 
-  String get haggai {
-    return Intl.message(
+  ////
+  String get haggai => Intl.message(
       'Haggai',
       name: 'haggai',
       desc: '',
       args: [],
     );
-  }
 
-  String get zechariah {
-    return Intl.message(
+  ////
+  String get zechariah => Intl.message(
       'Zechariah',
       name: 'zechariah',
       desc: '',
       args: [],
     );
-  }
 
-  String get malachi {
-    return Intl.message(
+  ////
+  String get malachi => Intl.message(
       'Malachi',
       name: 'malachi',
       desc: '',
       args: [],
     );
-  }
 
-  String get matthew {
-    return Intl.message(
+  ////
+  String get matthew => Intl.message(
       'Matthew',
       name: 'matthew',
       desc: '',
       args: [],
     );
-  }
-
-  String get mark {
-    return Intl.message(
+  ////
+  ////
+  String get mark => Intl.message(
       'Mark',
       name: 'mark',
       desc: '',
       args: [],
     );
-  }
 
-  String get luke {
-    return Intl.message(
+  ////
+  String get luke => Intl.message(
       'Luke',
       name: 'luke',
       desc: '',
       args: [],
     );
-  }
 
-  String get john {
-    return Intl.message(
+  ////
+  String get john => Intl.message(
       'John',
       name: 'john',
       desc: '',
       args: [],
     );
-  }
 
-  String get acts {
-    return Intl.message(
+  ////
+  String get acts => Intl.message(
       'Acts',
       name: 'acts',
       desc: '',
       args: [],
     );
-  }
 
-  String get romans {
-    return Intl.message(
+  ////
+  String get romans => Intl.message(
       'Romans',
       name: 'romans',
       desc: '',
       args: [],
     );
-  }
 
-  String get one_corinthians {
-    return Intl.message(
+  ////
+  String get oneCorinthians => Intl.message(
       '1 Corinthians',
-      name: 'one_corinthians',
+      name: 'oneCorinthians',
       desc: '',
       args: [],
     );
-  }
 
-  String get two_corinthians {
-    return Intl.message(
+  ////
+  String get twoCorinthians => Intl.message(
       '2 Corinthians',
-      name: 'two_corinthians',
+      name: 'twoCorinthians',
       desc: '',
       args: [],
     );
-  }
 
-  String get galatians {
-    return Intl.message(
+  ////
+  String get galatians => Intl.message(
       'Galatians',
       name: 'galatians',
       desc: '',
       args: [],
     );
-  }
 
-  String get ephesians {
-    return Intl.message(
+  ////
+  String get ephesians => Intl.message(
       'Ephesians',
       name: 'ephesians',
       desc: '',
       args: [],
     );
-  }
 
-  String get philippians {
-    return Intl.message(
+  ////
+  String get philippians => Intl.message(
       'Philippians',
       name: 'philippians',
       desc: '',
       args: [],
     );
-  }
 
-  String get colossians {
-    return Intl.message(
+  ////
+  String get colossians => Intl.message(
       'Colossians',
       name: 'colossians',
       desc: '',
       args: [],
     );
-  }
 
-  String get one_thessalonians {
-    return Intl.message(
+  ////
+  String get oneThessalonians => Intl.message(
       '1 Thessalonians',
-      name: 'one_thessalonians',
+      name: 'oneThessalonians',
       desc: '',
       args: [],
     );
-  }
 
-  String get two_thessalonians {
-    return Intl.message(
+  ////
+  String get twoThessalonians => Intl.message(
       '2 Thessalonians',
-      name: 'two_thessalonians',
+      name: 'twoThessalonians',
       desc: '',
       args: [],
     );
-  }
 
-  String get two_timothy {
-    return Intl.message(
+  ////
+  String get twoTimothy => Intl.message(
       '2 Timothy',
-      name: 'two_timothy',
+      name: 'twoTimothy',
       desc: '',
       args: [],
     );
-  }
 
-  String get titus {
-    return Intl.message(
+  ////
+  String get titus => Intl.message(
       'Titus',
       name: 'titus',
       desc: '',
       args: [],
     );
-  }
 
-  String get philemon {
-    return Intl.message(
+  ////
+  String get philemon => Intl.message(
       'Philemon',
       name: 'philemon',
       desc: '',
       args: [],
     );
-  }
 
-  String get hebrews {
-    return Intl.message(
+  ////
+  String get hebrews => Intl.message(
       'Hebrews',
       name: 'hebrews',
       desc: '',
       args: [],
     );
-  }
 
-  String get james {
-    return Intl.message(
+  ////
+  String get james => Intl.message(
       'Jame',
       name: 'james',
       desc: '',
       args: [],
     );
-  }
 
-  String get one_peter {
-    return Intl.message(
+  ////
+  String get onePeter => Intl.message(
       '1 Peter',
-      name: 'one_peter',
+      name: 'onePeter',
       desc: '',
       args: [],
     );
-  }
 
-  String get two_peter {
-    return Intl.message(
+  ////
+  String get twoPeter => Intl.message(
       '2 Peter',
-      name: 'two_peter',
+      name: 'twoPeter',
       desc: '',
       args: [],
     );
-  }
 
-  String get one_john {
-    return Intl.message(
+  ////
+  String get oneJohn => Intl.message(
       '1 John',
-      name: 'one_john',
+      name: 'oneJohn',
       desc: '',
       args: [],
     );
-  }
 
-  String get two_john {
-    return Intl.message(
+  ////
+  String get twoJohn => Intl.message(
       '2 John',
-      name: 'two_john',
+      name: 'twoJohn',
       desc: '',
       args: [],
     );
-  }
 
-  String get tree_john {
-    return Intl.message(
+  ////
+  String get treeJohn => Intl.message(
       '3 John',
-      name: 'tree_john',
+      name: 'treeJohn',
       desc: '',
       args: [],
     );
-  }
 
-  String get jude {
-    return Intl.message(
+  ////
+  String get jude => Intl.message(
       'Jude',
       name: 'jude',
       desc: '',
       args: [],
     );
-  }
 
-  String get revelation {
-    return Intl.message(
+  ////
+  String get revelation => Intl.message(
       'Revelation',
       name: 'revelation',
       desc: '',
       args: [],
     );
-  }
 
-  String get you_can_choice_translate_start {
-    return Intl.message(
+  ////
+  String get youCanChoicetranslateStart => Intl.message(
       'You can download the',
-      name: 'you_can_choice_translate_start',
+      name: 'youCanChoicetranslateStart',
       desc: '',
       args: [],
     );
-  }
 
-  String get you_can_choice_translate_middle {
-    return Intl.message(
+  ////
+  String get youCanChoicetranslateMiddle => Intl.message(
       'or',
-      name: 'you_can_choice_translate_middle',
+      name: 'youCanChoicetranslateMiddle',
       desc: '',
       args: [],
     );
-  }
 
-  String get you_can_choice_translate_end {
-    return Intl.message(
+  ////
+  String get youCanChoiceTranslateEnd => Intl.message(
       'version',
-      name: 'you_can_choice_translate_end',
+      name: 'youCanChoiceTranslateEnd',
       desc: '',
       args: [],
     );
-  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
+
   const AppLocalizationDelegate();
 
-  // Getter to change language
-  List<Locale> get supportedLocales {
-    return const <Locale>[
+  /// Getter for the locale languages code we have chosen
+  List<Locale> get supportedLocales => const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
       Locale.fromSubtags(languageCode: 'fr'),
     ];
-  }
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);

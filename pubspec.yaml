@@ -31,7 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  intl: ^0.16.1                     # Package for translation
+  intl: ^0.17.0                     # Package for translation
 
 
 dev_dependencies:
