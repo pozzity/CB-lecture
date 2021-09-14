@@ -169,7 +169,7 @@ class S {
   String youHaveXtranslation(Object count, Object addS) => Intl.message(
       'You have $count translation$addS',
       name: 'youHaveXtranslation',
-      desc: '',
+      // ignore: always_specify_types
       args: [count, addS],
     );
 
@@ -202,9 +202,9 @@ class S {
     );
 
   ////
-  String get text_of_d => Intl.message(
+  String get textOfD => Intl.message(
       'Text of the Day',
-      name: 'text_of_d',
+      name: 'textOfD',
       
     );
 
@@ -372,7 +372,7 @@ class S {
 
   ////
   String get reportCanSend => Intl.message(
-      'Can\'t send report',
+      "Can't send report",
       name: 'reportCanSend',
       
     );
@@ -476,9 +476,9 @@ class S {
     );
 
   ////
-  String get one_timothy => Intl.message(
+  String get oneTimothy => Intl.message(
       '1 Timothy',
-      name: 'one_timothy',
+      name: 'oneTimothy',
       
     );
 

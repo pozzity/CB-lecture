@@ -27,7 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(String lapp) => "Partager ${lapp}";
 
   
-  static m1(String url) => "Hey! voici une application de partage "
+  static String m1(String url) => "Hey! voici une application de partage "
   "évangélique très intéressante 👉 ${url}";
 
   static String m2(int count, String addS) => 
@@ -56,7 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "download" : MessageLookupByLibrary.simpleMessage("Télécharger"),
     "downloadLeastOneTranslate" : MessageLookupByLibrary
                   .simpleMessage("Veuillez télécharger au moins une traduction "
-                  "pour accéder aux fonctionnalités de l\'application"),
+                  "pour accéder aux fonctionnalités de l'application"),
     "downloaded" : MessageLookupByLibrary.simpleMessage("Téléchargé"),
     "downloading" : MessageLookupByLibrary.simpleMessage("Téléchargement"),
     "ecclesiastes" : MessageLookupByLibrary.simpleMessage("Ecclésiaste"),
@@ -68,7 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
                   "Veuillez vérifier votre accès Internet ou réessayer "
                   "plus tard. Si le problème persiste,"),
     "esther" : MessageLookupByLibrary.simpleMessage("Esther"),
-    "evaluate" : MessageLookupByLibrary.simpleMessage("Evaluer l\'application"),
+    "evaluate" : MessageLookupByLibrary.simpleMessage("Evaluer l'application"),
     "exodus" : MessageLookupByLibrary.simpleMessage("Exode"),
     "ezekiel" : MessageLookupByLibrary.simpleMessage("Ezéchiel"),
     "ezra" : MessageLookupByLibrary.simpleMessage("Esdras"),
@@ -97,7 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "judges" : MessageLookupByLibrary.simpleMessage("Juges"),
     "lamentations" : MessageLookupByLibrary.simpleMessage("Lamentations"),
     "language" : MessageLookupByLibrary.simpleMessage("Langue"),
-    "lapp" : MessageLookupByLibrary.simpleMessage("l\'application"),
+    "lapp" : MessageLookupByLibrary.simpleMessage("l'application"),
     "leviticus" : MessageLookupByLibrary.simpleMessage("Lévitique"),
     "luke" : MessageLookupByLibrary.simpleMessage("Luc"),
     "malachi" : MessageLookupByLibrary.simpleMessage("Malachie"),
@@ -116,7 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
                   .simpleMessage("Un accès libre et "
                   "gratuit a plusieur traduction!"),
     "moduleCalendarContent" : MessageLookupByLibrary
-                  .simpleMessage("L\'application propose des versets "
+                  .simpleMessage("L'application propose des versets "
                   "quotidiens de votre communauté que vous pouvez "
                   "lire et partager avec vos proches."),
     "moduleCalendarHeader" : MessageLookupByLibrary
@@ -150,7 +150,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "oneSamuel" : MessageLookupByLibrary.simpleMessage("1 Samuel"),
     "oneThessalonians" : MessageLookupByLibrary
                   .simpleMessage("1 Thessaloniciens"),
-    "one_timothy" : MessageLookupByLibrary.simpleMessage("1 Timothée"),
+    "oneTimothy" : MessageLookupByLibrary.simpleMessage("1 Timothée"),
     "or" : MessageLookupByLibrary.simpleMessage("Ou"),
     "philemon" : MessageLookupByLibrary.simpleMessage("Philémon"),
     "philippians" : MessageLookupByLibrary.simpleMessage("Philippiens"),
@@ -163,9 +163,9 @@ class MessageLookup extends MessageLookupByLibrary {
                   .simpleMessage("Entrez une description "
                   "complète de votre erreur"),
     "reportCanSend" : MessageLookupByLibrary
-                  .simpleMessage("Impossible d\'envoyer un rapport"),
+                  .simpleMessage("Impossible d'envoyer un rapport"),
     "reportSubject" : MessageLookupByLibrary
-                  .simpleMessage("L\'application № 099 ne "
+                  .simpleMessage("L'application № 099 ne "
                   "parvient pas à installer la traduction"),
     "revelation" : MessageLookupByLibrary.simpleMessage("Apocalypse"),
     "romans" : MessageLookupByLibrary.simpleMessage("Romains"),
@@ -183,7 +183,7 @@ class MessageLookup extends MessageLookupByLibrary {
                   .simpleMessage("Cantique des Cantiques"),
     "start" : MessageLookupByLibrary.simpleMessage("Commencer"),
     "sunday" : MessageLookupByLibrary.simpleMessage("Dimanche"),
-    "text_of_d" : MessageLookupByLibrary.simpleMessage("Texte du Jour"),
+    "textOfD" : MessageLookupByLibrary.simpleMessage("Texte du Jour"),
     "thursday" : MessageLookupByLibrary.simpleMessage("Jeudi"),
     "titus" : MessageLookupByLibrary.simpleMessage("Tite"),
     "translation" : MessageLookupByLibrary.simpleMessage("Traduction"),

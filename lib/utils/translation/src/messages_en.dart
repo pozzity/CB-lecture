@@ -22,9 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
   /// getter for selected language
   String get localeName => 'en';
 
-  static m0(String lapp) => "Share ${lapp}";
+  static String m0(String lapp) => "Share ${lapp}";
 
-  static m1(String url) => 
+  static String m1(String url) => 
   "Hey! here is a very interesting evangelistic sharing application 👉 ${url}";
 
   // ignore: non_constant_identifier_names
@@ -138,7 +138,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "oneSamuel" : MessageLookupByLibrary.simpleMessage("1 Samuel"),
     "oneThessalonians" : MessageLookupByLibrary
               .simpleMessage("1 Thessalonians"),
-    "one_timothy" : MessageLookupByLibrary.simpleMessage("1 Timothy"),
+    "oneTimothy" : MessageLookupByLibrary.simpleMessage("1 Timothy"),
     "or" : MessageLookupByLibrary.simpleMessage("Or"),
     "philemon" : MessageLookupByLibrary.simpleMessage("Philemon"),
     "philippians" : MessageLookupByLibrary.simpleMessage("Philippians"),
@@ -149,7 +149,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reportBody" : MessageLookupByLibrary
               .simpleMessage("Enter a full description of your error"),
     "reportCanSend" : MessageLookupByLibrary
-              .simpleMessage("Can\'t send report"),
+              .simpleMessage("Can't send report"),
     "reportSubject" : MessageLookupByLibrary
               .simpleMessage("The application № 099 fails "
               "to install the translation"),
@@ -168,7 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "songOfSongs" : MessageLookupByLibrary.simpleMessage("Song of Songs"),
     "start" : MessageLookupByLibrary.simpleMessage("Start"),
     "sunday" : MessageLookupByLibrary.simpleMessage("Sunday"),
-    "text_of_d" : MessageLookupByLibrary.simpleMessage("Text of the Day"),
+    "textOfD" : MessageLookupByLibrary.simpleMessage("Text of the Day"),
     "thursday" : MessageLookupByLibrary.simpleMessage("Thursday"),
     "titus" : MessageLookupByLibrary.simpleMessage("Titus"),
     "translation" : MessageLookupByLibrary.simpleMessage("translation"),
