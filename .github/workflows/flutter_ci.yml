@@ -10,6 +10,10 @@ jobs:
         flutter-version: '2.0.4'
     - run: flutter pub get
     - run: flutter analyze
+    - run: echo 'code coverage repport'
+    - run: curl -Os https://uploader.codecov.io/latest/linux/codecov
+    - run: chmod +x codecov
+    - run: echo './codecov -t' ${CODECOV_TOKEN}
   test:
     runs-on: ubuntu-latest
     steps:
