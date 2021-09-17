@@ -1,7 +1,7 @@
 part of database_helper;
 
 /// Database implementation using Firebase Firestore & Storage.
-class FirestoreImplementation implements Database {
+class _FirestoreImplementation implements Database {
   final FirebaseFirestore _databaseReference = FirebaseFirestore.instance;
 
  @override

@@ -26,6 +26,9 @@ abstract class Database {
   /// Constructs a new Database instance of [_FakeImplementation].
   factory Database.fake() => _FakeImplementation();
 
+  /// Constructs a new Database instance of [_FirestoreImplementation].
+  factory Database.firestore() => _FirestoreImplementation();
+
 
   /// Retrieves the given collection from the database.
   /// * [collectionPath] The path to the collection to retrieve.
