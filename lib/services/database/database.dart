@@ -24,36 +24,40 @@ abstract class Database {
 
   /// Retrieves the given collection from the database.
   /// * [collectionPath] The path to the collection to retrieve.
+  /// * [filters] The value filters the collection.
   ///   eg: 
   ///    # For no sql implementation.
   ///       - collectionName, filter?
   ///    # For sql implementation.
   ///       - tableName, filter?
-  ///    # For no sql implementation.
-  ///       - table_name/book/chapter/verser
-  ///       - table_name/book/chapter
-  ///       - table_name/book
+  ///    # For fake implementation.
+  ///       - table_name/book_name/chapter_name/verser_id
+  ///       - table_name/book_name/chapter_name
+  ///       - table_name/book_name
   /// * return 
   ///     # Succes : Get record in our database as List<Map<String, dynamic>
-  ///     # Echec : Null
+  ///     # Error : Null
   Future<List<Map<String, dynamic>>?> getCollection(String collectionPath, 
     {List<DatabaseQuery>? filters});
 
   /// Create collection from the database.
-  /// * [collectionPath] the path to the collection to create
+  /// * [collectionPath] the path to the collection to create.
+  /// * [recordMap] Value to create.
+  /// 
   ///   eg: 
   ///    # For no sql implementation.
   ///       - collection_name, recordMap
-  ///    # For  sql implementation [collectionPath].
+  ///    # For  sqlite implementation .
   ///       - table_name, recordMap
   /// * return boolean
   ///     # Succes : true
-  ///     # Echec : false
+  ///     # Error : false
   Future<bool> createRecord(
       String collectionPath, Map<String, dynamic> recordMap);
 
   /// Remove collection from the database.
   /// * [collectionPath] the path to the collection to remove
+  /// * [documentId] Id of collection remove.
   ///   eg: 
   ///    # For no sql implementation.
   ///       - collectionName , documentId
@@ -61,7 +65,7 @@ abstract class Database {
   ///       - tableName , documentId
   /// * return boolean
   ///     # Succes : true
-  ///     # Echec : false
+  ///     # Error : false
   Future<bool> removeRecordByPath(
       String collectionPath, int documentId);
 }

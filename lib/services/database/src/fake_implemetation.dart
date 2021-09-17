@@ -42,9 +42,7 @@ class _FakeImplementation implements Database {
 
   @override
   Future<List<Map<String, dynamic>>?> getCollection(String collectionPath,
-      {List<Table>? tables,
-      String? nameDataBase,
-      List<DatabaseQuery>? filters}) async {
+      {List<DatabaseQuery>? filters}) async {
     final List<String> pathSegments = collectionPath.split('/');
     switch (pathSegments.length) {
       case 2:
