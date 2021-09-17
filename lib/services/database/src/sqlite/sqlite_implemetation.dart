@@ -46,9 +46,7 @@ class _SQLiteImplementation implements Database {
 
   @override
   Future<List<Map<String, dynamic>>?> getCollection(String collectionPath,
-      {List<Table>? tables,
-      String? nameDataBase = 'text',
-      List<DatabaseQuery>? filters = const <DatabaseQuery>[]}) async {
+      {List<DatabaseQuery>? filters = const <DatabaseQuery>[]}) async {
     final sqlite.Database? db = await database;
     final StringBuffer bufferWhere = StringBuffer();
     final List<dynamic> whereArgs = <String>[];
