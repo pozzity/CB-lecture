@@ -2,12 +2,16 @@ library database_helper;
 
 import 'package:sqflite/sqflite.dart' as sqlite;
 import 'package:path/path.dart' as path;
+import 'dart:developer';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 part 'src/sqlite/sqlite_implemetation.dart';
 part 'src/sqlite/sqlite_table.dart';
 part 'src/sqlite/sqlite_colum.dart';
 part 'src/helper/database_query.dart';
 part 'src/fake_implemetation.dart';
+part 'src/firestore/firestore_implemetation.dart';
 
 /// Helpers class that help us to retrieve, edit or delete document or
 /// Collection from our database.
