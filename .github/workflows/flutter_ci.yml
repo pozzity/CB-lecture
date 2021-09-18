@@ -10,7 +10,12 @@ jobs:
         flutter-version: '2.0.4'
     - run: flutter pub get
     - run: flutter analyze
+    - run: curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import # One-time step
     - run: curl -Os https://uploader.codecov.io/latest/linux/codecov
+    - run: curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM
+    - run: curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM.sig
+    - run: gpgv codecov.SHA256SUM.sig codecov.SHA256SUM
+    - run: shasum -a 256 -c codecov.SHA256SUM
     - run: chmod +x codecov
     - name: Code coverage repport
       run: ./codecov -t ${CODECOV_TOKEN}
