@@ -44,43 +44,42 @@ class _FakeImplementation implements Database {
   Future<List<Map<String, dynamic>>?> getCollection(String collectionPath,
       {List<DatabaseQuery>? filters}) async {
     final List<String> pathSegments = collectionPath.split('/');
-    switch (pathSegments.length) {
-      case 2:
-        {
-          return List<Map<String, dynamic>>.from(_dataBase.where(
+    List<Map<String, dynamic>> retrievers = _dataBase;
+    for (final DatabaseQuery filter in filters!) {
+      switch (filter.condition) {
+        case DatabaseFieldCondition.isEqualTo:
+          retrievers = List<Map<String, dynamic>>.from(retrievers.where(
                   (Map<String, dynamic> element) =>
-                      element['traductionId'] == pathSegments[1]))
-              as Future<List<Map<String, dynamic>>?>;
-        }
-      case 3:
-        {
-          return List<Map<String, dynamic>>.from(_dataBase.where(
+                      element[filter.key] == filter.value));
+          break;
+        case DatabaseFieldCondition.isGreaterThan:
+        retrievers = List<Map<String, dynamic>>.from(retrievers.where(
                   (Map<String, dynamic> element) =>
-                      element['traductionId'] == pathSegments[1] &&
-                      element['book'] == pathSegments[2]))
-              as Future<List<Map<String, dynamic>>?>;
-        }
-      case 4:
-        {
-          return List<Map<String, dynamic>>.from(_dataBase.where(
+                      element[filter.key] > filter.value));
+          break;
+        case DatabaseFieldCondition.isGreaterThanOrEqualTo:
+          retrievers = List<Map<String, dynamic>>.from(retrievers.where(
                   (Map<String, dynamic> element) =>
-                      element['traductionId'] == pathSegments[1] &&
-                      element['book'] == pathSegments[2] &&
-                      element['chapter'] == pathSegments[3]))
-              as Future<List<Map<String, dynamic>>?>;
-        }
-      case 5:
-        {
-          return List<Map<String, dynamic>>.from(_dataBase.where(
+                      element[filter.key] >= filter.value));
+          break;
+        case DatabaseFieldCondition.isLessThan:
+          retrievers = List<Map<String, dynamic>>.from(retrievers.where(
                   (Map<String, dynamic> element) =>
-                      element['id'] == pathSegments[4]))
-              as Future<List<Map<String, dynamic>>?>;
-        }
-      default:
-        {
-          return null;
-        }
+                      element[filter.key] < filter.value));
+          break;
+        case DatabaseFieldCondition.isLessThanOrEqualTo:
+          retrievers = List<Map<String, dynamic>>.from(retrievers.where(
+                  (Map<String, dynamic> element) =>
+                      element[filter.key] <= filter.value));
+          break;
+        case DatabaseFieldCondition.isNotEqualTo:
+          retrievers = List<Map<String, dynamic>>.from(retrievers.where(
+                  (Map<String, dynamic> element) =>
+                      element[filter.key] ==! filter.value));
+          break;
+      }
     }
+    return retrievers as Future<List<Map<String, dynamic>>?>;
   }
 
   @override
