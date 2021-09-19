@@ -4,10 +4,10 @@ import 'package:sqflite/sqflite.dart' as sqlite;
 import 'package:path/path.dart' as path;
 
 part 'src/sqlite/sqlite_implemetation.dart';
-part 'src/sqlite/sqlite_table.dart';
-part 'src/sqlite/sqlite_colum.dart';
+part 'src/sqlite/lib/sqlite_table.dart';
+part 'src/sqlite/lib/sqlite_colum.dart';
 part 'src/helper/database_query.dart';
-part 'src/fake_implemetation.dart';
+part 'src/fake_sqlite/fake_sqlite_implemetation.dart';
 
 /// Helpers class that help us to retrieve, edit or delete document or
 /// Collection from our database.
@@ -18,8 +18,8 @@ abstract class Database {
     required List<Table> tables, required String nameDataBase})=>
       _SQLiteImplementation(tables: tables, nameDataBase: nameDataBase);
   
-  /// Constructs a new Database instance of [_FakeImplementation].
-  factory Database.fake() => _FakeImplementation();
+  /// Constructs a new Database instance of [_FakeSqliteImplementation].
+  factory Database.fakeSqlite() => _FakeSqliteImplementation();
 
 
   /// Retrieves the given collection from the database.
