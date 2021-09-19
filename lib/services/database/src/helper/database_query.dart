@@ -1,4 +1,4 @@
-part of database_helper;
+part of database;
 
 
 /// A class query for record info related data.

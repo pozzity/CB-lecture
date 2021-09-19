@@ -1,4 +1,4 @@
-part of database_helper;
+part of database;
 
 /// Implementation class for Column of Table Sqlite database.
 class Column {

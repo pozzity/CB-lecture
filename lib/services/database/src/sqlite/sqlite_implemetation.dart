@@ -1,4 +1,4 @@
-part of database_helper;
+part of database;
 
 /// Implementation class for Sqlite database.
 class _SQLiteImplementation implements Database {
