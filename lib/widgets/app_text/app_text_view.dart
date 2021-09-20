@@ -103,6 +103,7 @@ class _AppTextView extends StatelessWidget {
       overflow: appTextModel.overflow,
       textAlign: appTextModel.textAlign,
       softWrap: appTextModel.softWrap,
+      textDirection: appTextModel.textDirection,
     );
   }
 }
