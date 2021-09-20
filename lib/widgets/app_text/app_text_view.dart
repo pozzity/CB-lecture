@@ -88,7 +88,6 @@ class AppText extends StatelessWidget {
   }
 }
 
-/// A widget that display a text base on our preference data.
 class _AppTextView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
