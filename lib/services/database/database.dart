@@ -29,11 +29,9 @@ abstract class Database {
   ///    # For no sql implementation.
   ///       - collectionName, filter?
   ///    # For sql implementation.
-  ///       - tableName, filter?
+  ///       - collectionName, filter?
   ///    # For fake implementation.
-  ///       - table_name/book_name/chapter_name/verser_id
-  ///       - table_name/book_name/chapter_name
-  ///       - table_name/book_name
+  ///       - collectionName : value possible [verse, chant], filter
   /// * return 
   ///     # Succes : Get record in our database as List<Map<String, dynamic>
   ///     # Error : Null
