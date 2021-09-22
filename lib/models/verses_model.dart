@@ -1,40 +1,49 @@
 
 import '_models.dart';
-
+/// Verses Model
 class VersesTable extends Model {
   
+  /// Constructor
   VersesTable(String path) : super(path);
-  
-  // ignore: public_member_api_docs
-  // VersesTable(String path) : super(path);
 
   /// represent the name of the table
   static const String collectionPath = 'path'; 
 
   /// nom de la transcription
   String translateName = '';
-  static const String translate = "translation";
+
+  /// 
+  static const String translate = 'translation';
 
   /// text representant le verse
-  String text = '';
-  static const String textContain = "text";
+  String? text = '';
+
+  /// 
+  static const String textContain = 'text';
 
   /// id de l'enregistrement
-  int id = 0;
-  static const String idCollection = "id";
+  int? id = 0;
+
+  ///
+  static const String idCollection = 'id';
 
   /// numero du verses
-  int num = 0;
-  static const String verseNum = "verseNum";
+  int? num = 0;
+  /// 
+  static const String verseNum = 'verseNum';
 
   /// represente le numero du
-  int chapitre = 0;
-  static const String verseChapter = "chapitre";
+  int? chapitre = 0;
+
+  ///
+  static const String verseChapter = 'chapitre';
 
   /// represente un json de donnee encoder en chaine 
   /// de caracteres qui contiendra
   /// tout type de donnee ajoutee plus tard
-  String livre = '';
+  String? livre = '';
+
+  ///
   static const String verseBook = 'livre';
 
 
@@ -54,10 +63,10 @@ class VersesTable extends Model {
 
   @override
   Map<String, dynamic> toMap() {
-    // ignore: unnecessary_null_comparison
-    assert(text != null || livre != null || chapitre != null || num != null);
-    // ignore: always_specify_types
-    final Map<String, dynamic> res = {
+    assert(text != null  || livre != null 
+      || chapitre != null || num != null, 'parameters are not null');
+    
+    final Map<String, dynamic> res = <String, dynamic>{
       textContain: text,
       verseNum: num,
       verseBook: livre,
@@ -65,7 +74,7 @@ class VersesTable extends Model {
       translate: translateName,
       collectionPath: path
     };
-    // ignore: unnecessary_null_comparison
+    
     if (id != null) {
       res[idCollection] = id;
     }

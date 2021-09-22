@@ -11,7 +11,7 @@ abstract class Model {
 
   /// Transform map to data we will use.
   @mustCallSuper
-  fromMap(Map<String, dynamic> map);
+  Map<String, dynamic> fromMap(Map<String, dynamic> map);
 
   /// Transform received data to map.
   @mustCallSuper
