@@ -2,29 +2,22 @@
 // This is a library that looks up messages for specific locales by
 // delegating to the appropriate library.
 
-// Ignore issues from commonly used lints in this file.
-// ignore_for_file:implementation_imports, file_names, unnecessary_new
-// ignore_for_file:unnecessary_brace_in_string_interps, directives_ordering
-// ignore_for_file:argument_type_not_assignable, invalid_assignment
-// ignore_for_file:prefer_single_quotes, prefer_generic_function_type_aliases
-// ignore_for_file:comment_references
 
 import 'dart:async';
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
+// ignore: implementation_imports
 import 'package:intl/src/intl_helpers.dart';
 
 import 'messages_en.dart' as messages_en;
 import 'messages_fr.dart' as messages_fr;
 
-typedef Future<dynamic> LibraryLoader();
-// ignore: always_specify_types
-Map<String, LibraryLoader> _deferredLibraries = {
-  // ignore: always_specify_types
-  'en': () => new Future.value(null),
-  // ignore: always_specify_types
-  'fr': () => new Future.value(null),
+typedef LibraryLoader = Future<dynamic> Function();
+
+Map<String, LibraryLoader> _deferredLibraries = <String, LibraryLoader>{
+  'en': () => Future<String>.value(),
+  'fr': () => Future<String>.value(),
 };
 
 /// This function allow to switch the global language in appofrom English
@@ -47,16 +40,13 @@ Future<bool> initializeMessages(String localeName) async {
     (String locale) => _deferredLibraries[locale] != null,
     onFailure: (_) => null);
   if (availableLocale == null) {
-    // ignore: always_specify_types
-    return new Future.value(false);
+    return Future<bool>.value(false);
   }
   final LibraryLoader? lib = _deferredLibraries[availableLocale];
-  // ignore: always_specify_types
-  await (lib == null ? new Future.value(false) : lib());
-  initializeInternalMessageLookup(() => new CompositeMessageLookup());
+  await (lib == null ? Future<bool>.value(false) : lib());
+  initializeInternalMessageLookup(() => CompositeMessageLookup());
   messageLookup.addLocale(availableLocale, _findGeneratedMessagesFor);
-  // ignore: always_specify_types
-  return new Future.value(true);
+  return Future<bool>.value(true);
 }
 
 bool _messagesExistFor(String locale) {

@@ -1,4 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'src/messages_all.dart';
@@ -26,13 +28,9 @@ class S {
     final String name = (locale.countryCode?.isEmpty ?? false) 
     ? locale.languageCode : locale.toString();
     final String localeName = Intl.canonicalizedLocale(name); 
-    return initializeMessages(localeName).then((_) {
-      Intl.defaultLocale = localeName;
-      // ignore: join_return_with_assignment
-      S.current = S();
-      
-      return S.current;
-    });
+    return initializeMessages(localeName).then((_) => 
+      Intl.defaultLocale = localeName
+    ).then((_) => S.current = S() );
   } 
 
   ///
@@ -83,16 +81,14 @@ class S {
   String share(Object lapp) => Intl.message(
       'Share $lapp',
       name: 'share',
-      // ignore: always_specify_types
-      args: [lapp],
+      args: <Object>[lapp],
     );
   /// 
   String shareMsg(Object url) => Intl.message(
       'Hey! here is a very interesting '
       'evangelistic sharing application 👉 $url',
       name: 'shareMsg',
-      // ignore: always_specify_types
-      args: [url],
+      args: <Object>[url],
     );
 
   ////
@@ -169,8 +165,7 @@ class S {
   String youHaveXtranslation(Object count, Object addS) => Intl.message(
       'You have $count translation$addS',
       name: 'youHaveXtranslation',
-      // ignore: always_specify_types
-      args: [count, addS],
+      args: <Object>[count, addS],
     );
 
   ////
