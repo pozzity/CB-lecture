@@ -16,7 +16,12 @@ const Locale _defaultLocale = _en;
 /// to be loaded by a [Localizations] widget.
 class AppLocalizationDelegate extends LocalizationsDelegate<AppIntl> {
   /// Construct a new [AppLocalizationDelegate].
-  const AppLocalizationDelegate();
+  factory AppLocalizationDelegate() =>
+      _instance ??= const AppLocalizationDelegate._();
+
+  const AppLocalizationDelegate._();
+
+  static AppLocalizationDelegate? _instance;
 
   /// Getter for the locale languages code we have chosen
   List<Locale> get supportedLocales => _availableResource.keys.toList();

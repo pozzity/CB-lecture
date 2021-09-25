@@ -25,9 +25,6 @@ class AppIntl extends ChangeNotifier {
   /// The unique available instance of the [AppIntl].
   static AppIntl? instance;
 
-  ///
-  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
-
   /// Get the instance of [AppIntl] at the given context.
   static AppIntl? of(BuildContext context) =>
       Localizations.of<AppIntl>(context, AppIntl);
