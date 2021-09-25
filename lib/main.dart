@@ -1,5 +1,6 @@
-import 'package:cb_lecture/utils/app_intl/app_intl.dart';
 import 'package:flutter/material.dart';
+
+import 'utils/app_intl/app_intl.dart';
 
 void main() {
   runApp(const CBLectureApp());
@@ -35,8 +36,8 @@ class CBLectureApp extends StatelessWidget {
         home: Scaffold(
           body: Center(
             child: Builder(
-              builder: (BuildContext context) =>
-                  const Text('Flutter Demo Home Page'),
+              builder: (BuildContext context) => Text(
+                  AppIntl(locale: Localizations.localeOf(context)).appName),
             ),
           ),
         ),
