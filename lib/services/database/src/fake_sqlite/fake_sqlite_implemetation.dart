@@ -157,7 +157,7 @@ class _FakeSqliteImplementation implements Database {
         (Map<String, dynamic> element) => element['table'] == collectionPath,
         orElse: () => <String, dynamic>{});
     if (data == <String, dynamic>{}) {
-      return false;
+     return false;
     }
     bool controlId = false;
     for (int i = 1; i < data['list'].length; i++) {
