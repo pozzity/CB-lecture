@@ -13,7 +13,7 @@ void main() {
       final List<Map<String, dynamic>>? verses =
           await database.getCollection('verse', filters: filters);
 
-      expect(verses!.first['id'], 1);
+      expect(verses?.first['id'], 1);
     });
     test('Retrieve by Traductionid.', () async {
       final Database database = Database.fakeSqlite();
@@ -26,8 +26,8 @@ void main() {
       final List<Map<String, dynamic>>? verses =
           await database.getCollection('verse', filters: filters);
 
-      expect(verses!.first['traductionId'], 'tra1');
-      expect(verses.length, 2);
+      expect(verses?.first['traductionId'], 'tra1');
+      expect(verses?.length, 2);
     });
     test('Retrieve by book.', () async {
       final Database database = Database.fakeSqlite();
@@ -40,8 +40,79 @@ void main() {
       final List<Map<String, dynamic>>? verses =
           await database.getCollection('verse', filters: filters);
 
-      expect(verses!.first['book'], 'luc');
-      expect(verses.length, 2);
+      expect(verses?.first['book'], 'luc');
+      expect(verses?.length, 2);
+    });
+  });
+
+  group('Update data on fake implementation.', () {
+    test('Update succefully', () async {
+      final Database database = Database.fakeSqlite();
+      final List<DatabaseQuery> filters = <DatabaseQuery>[];
+      final DatabaseQuery databaseQuery1 =
+          DatabaseQuery('id', 5, DatabaseFieldCondition.isEqualTo);
+      filters.add(databaseQuery1);
+      final Map<String, dynamic> updateMap = <String, dynamic>{
+          'id': 5,
+          'traductionId': 'tra3',
+          'book': 'timote',
+          'chapter': '2',
+          'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+        };
+
+      final bool status = await database.
+        updateRecordByPath('verse', updateMap, filters: filters);
+
+      expect(status, true);
+    });
+    test('Update error', () async {
+      final Database database = Database.fakeSqlite();
+      final List<DatabaseQuery> filters = <DatabaseQuery>[];
+      final DatabaseQuery databaseQuery1 =
+          DatabaseQuery('id', 6, DatabaseFieldCondition.isEqualTo);
+      filters.add(databaseQuery1);
+      final Map<String, dynamic> updateMap = <String, dynamic>{
+          'id': 5,
+          'traductionId': 'tra3',
+          'book': 'timote',
+          'chapter': '2',
+          'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+        };
+
+      final bool status = await database.
+        updateRecordByPath('verse', updateMap, filters: filters);
+
+      expect(status, false);
+    });
+  });
+
+  group('Create data on fake implementation.', () {
+    test('Create succefully', () async {
+      final Database database = Database.fakeSqlite();
+      final Map<String, dynamic> recordMap = <String, dynamic>{
+          'traductionId': 'tra3',
+          'book': 'timote',
+          'chapter': '2',
+          'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+        };
+
+      final bool status = await database.
+        createRecord('verse', recordMap);
+
+      expect(status, true);
+    });
+  });
+
+   group('Delete data on fake implementation.', () {
+    test('Delete succefully', () async {
+      final Database database = Database.fakeSqlite();
+      final bool status = await database.removeRecordByPath('verse', 1);
+      expect(status, true);
+    });
+    test('Delete error', () async {
+      final Database database = Database.fakeSqlite();
+      final bool status = await database.removeRecordByPath('verse', 10);
+      expect(status, false);
     });
   });
 }

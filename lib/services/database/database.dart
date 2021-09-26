@@ -30,7 +30,7 @@ abstract class Database {
   ///       - collectionName, filter?
   ///    # For sql implementation.
   ///       - collectionName, filter?
-  ///    # For fake implementation.
+  ///    # For fake sqlite implementation.
   ///       - collectionName : value possible [verse, chant], filter
   /// * return 
   ///     # Succes : Get record in our database as List<Map<String, dynamic>
@@ -66,4 +66,22 @@ abstract class Database {
   ///     # Error : false
   Future<bool> removeRecordByPath(
       String collectionPath, int documentId);
+
+
+  /// Update collection from the database.
+  /// * [collectionPath] the path to the collection to update
+  /// * [updateMap] Collection update.
+  /// * [filters] Filter for find collection update.
+  ///   eg: 
+  ///    # For no sql implementation.
+  ///       - collectionName , documentId
+  ///    # For sql implementation.
+  ///       - tableName , documentId
+  /// * return boolean
+  ///     # Succes : true
+  ///     # Error : false
+  Future<bool> updateRecordByPath(
+    String collectionPath, 
+    Map<String, dynamic> updateMap, 
+    {List<DatabaseQuery>? filters = const <DatabaseQuery>[]});
 }

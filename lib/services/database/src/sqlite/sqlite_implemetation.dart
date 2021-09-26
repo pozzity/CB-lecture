@@ -110,4 +110,51 @@ class _SQLiteImplementation implements Database {
     );
     return i != 0;
   }
+
+  @override
+  Future<bool> updateRecordByPath(
+    String collectionPath, 
+    Map<String, dynamic> updateMap, 
+    {List<DatabaseQuery>? filters = const <DatabaseQuery>[]}) async{
+    final sqlite.Database? db = await database;
+    final StringBuffer bufferWhere = StringBuffer();
+    final List<dynamic> whereArgs = <String>[];
+    for (final DatabaseQuery filter in filters!) {
+      switch (filter.condition) {
+        case DatabaseFieldCondition.isEqualTo:
+          bufferWhere.write('and ${filter.key} = ? ');
+          whereArgs.add(filter.value);
+          break;
+        case DatabaseFieldCondition.isGreaterThan:
+          bufferWhere.write('and ${filter.key} > ? ');
+          whereArgs.add(filter.value);
+          break;
+        case DatabaseFieldCondition.isGreaterThanOrEqualTo:
+          bufferWhere.write('and ${filter.key} >= ? ');
+          whereArgs.add(filter.value);
+          break;
+        case DatabaseFieldCondition.isLessThan:
+          bufferWhere.write('and ${filter.key} < ? ');
+          whereArgs.add(filter.value);
+          break;
+        case DatabaseFieldCondition.isLessThanOrEqualTo:
+          bufferWhere.write('and ${filter.key} <= ? ');
+          whereArgs.add(filter.value);
+          break;
+        case DatabaseFieldCondition.isNotEqualTo:
+          bufferWhere.write('and ${filter.key} <> ? ');
+          whereArgs.add(filter.value);
+          break;
+      }
+    }
+    final String where = 
+      bufferWhere.toString().substring(4 , bufferWhere.toString().length);
+    final int? i = await db?.update(
+      collectionPath,
+      updateMap,
+      where: where,
+      whereArgs: whereArgs,
+    );
+    return i != 0;
+  }
 }
