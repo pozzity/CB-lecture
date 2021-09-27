@@ -1,49 +1,49 @@
 
 import '_models.dart';
-/// Verses Model
+
+/// Verses Model.
 class VersesTable extends Model {
   
-  /// Constructor
+  /// Constructor that inherite property [path] of his parent.
   VersesTable(String path) : super(path);
 
-  /// represent the name of the table
+  /// Represent [path] for the map conversion.
   static const String collectionPath = 'path'; 
 
-  /// nom de la transcription
+  /// Translate name.
   String translateName = '';
 
-  /// 
+  ///  Represent [translateName] for the map conversion.
   static const String translate = 'translation';
 
-  /// text representant le verse
+  /// Text of verses.
   String? text = '';
 
-  /// 
+  /// Represent [text] for the map conversion.
   static const String textContain = 'text';
 
-  /// id de l'enregistrement
+  /// Collection id.
   int? id = 0;
 
-  ///
+  /// Represent [id] for the map conversion.
   static const String idCollection = 'id';
 
-  /// numero du verses
+  /// Verse number.
   int? num = 0;
-  /// 
+
+  /// Represent [num] for the map conversion.
   static const String verseNum = 'verseNum';
 
-  /// represente le numero du
+  /// Chapter name.
   int? chapitre = 0;
 
-  ///
+  /// Represent [chapitre] for the map conversion
   static const String verseChapter = 'chapitre';
 
-  /// represente un json de donnee encoder en chaine 
-  /// de caracteres qui contiendra
-  /// tout type de donnee ajoutee plus tard
+  /// Book name.
   String? livre = '';
 
-  ///
+  /// Represent [livre] for the map conversion
   static const String verseBook = 'livre';
 
 

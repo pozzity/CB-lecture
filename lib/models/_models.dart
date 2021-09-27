@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 /// This Model is used as a template
 /// to create all models.
 abstract class Model {
-  /// Constructor
+  /// Constructor that take in parameter [path].
   Model(this.path);
 
   /// * [path] represent the collection path.
