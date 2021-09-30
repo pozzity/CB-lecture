@@ -6,12 +6,24 @@ class VersesTable extends Model {
   
   /// Constructor that inherite property [path] of his parent.
   VersesTable(String path) : super(path);
+  
+  /// Tranform map to data.
+  @override
+  VersesTable.fromMap(Map<String, dynamic> map) :
+    
+        id = map[idCollection],
+        text = map[textContain],
+        translateName = map[translate],
+        num = map[verseNum],
+        chapitre = map[verseChapter],
+        livre = map[verseBook],
+        super.fromMap(collectionPath,map);
 
   /// Represent [path] for the map conversion.
   static const String collectionPath = 'path'; 
 
   /// Translate name.
-  String translateName = '';
+  String? translateName;
 
   ///  Represent [translateName] for the map conversion.
   static const String translate = 'translation';
@@ -45,22 +57,9 @@ class VersesTable extends Model {
 
   /// Represent [livre] for the map conversion
   static const String verseBook = 'livre';
-
-
-  @override
-  Map<String, dynamic> fromMap(Map<String, dynamic> map) {
-    
-        id = map[idCollection];
-        text = map[textContain];
-        translateName = map[translate];
-        num = map[verseNum];
-        chapitre = map[verseChapter];
-        livre = map[verseBook];
-    
-    throw UnimplementedError();
-  }
+  
       
-
+  /// Transform received data to Map.
   @override
   Map<String, dynamic> toMap() {
     assert(text != null  || livre != null 
@@ -78,7 +77,14 @@ class VersesTable extends Model {
     if (id != null) {
       res[idCollection] = id;
     }
-    return res;
+    return <String, dynamic>{
+      textContain: text,
+      verseNum: num,
+      verseBook: livre,
+      verseChapter: chapitre,
+      translate: translateName,
+      collectionPath: path
+    };
   }
 
 }
