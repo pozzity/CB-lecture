@@ -17,7 +17,7 @@ class VersesTable extends Model {
   /// Represents [path] for the json conversion.
   static const String keyMapPath = 'path';
 
-  ///  Represent [translateName] for the json conversion.
+  ///  Represents [translateName] for the json conversion.
   static const String keyMapTranslate = 'translation';
 
   /// Represent [text] for the json conversion.
