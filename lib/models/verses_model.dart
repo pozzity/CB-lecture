@@ -14,7 +14,7 @@ class VersesTable extends Model {
         favorite = json[keyMapFavorite],
         super.fromJson(path, json);
 
-  /// Represent [path] for the json conversion.
+  /// Represents [path] for the json conversion.
   static const String keyMapPath = 'path';
 
   ///  Represent [translateName] for the json conversion.
