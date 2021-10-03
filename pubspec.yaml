@@ -33,8 +33,6 @@ dependencies:
   #  - Flutter: Android iOS Linux macOS Windows Web 
   flutter:
     sdk: flutter
-  
-  firebase_analytics: ^8.3.2        #Firebase Analytics package
 
   # A wrapper around InheritedWidget to make them easier to use and
   # more reusable.
