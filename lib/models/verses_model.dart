@@ -29,7 +29,7 @@ class VersesTable extends Model {
   /// Represents [num] for the json conversion.
   static const String keyMapVerseNum = 'verseNum';
 
-  /// Represent [chapter] for the json conversion
+  /// Represents [chapter] for the json conversion
   static const String keyMapChapter = 'chapter';
 
   /// Represent [book] for the json conversion
