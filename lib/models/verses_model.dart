@@ -2,16 +2,16 @@ import '_models.dart';
 
 /// Verses Model.
 class VersesTable extends Model {
-  /// Tranform map to data.
+  /// Function used for tranform Json to data.
   @override
-  VersesTable.fromMap(String path, Map<String, dynamic> map)
+  VersesTable.fromJson(String path, Map<String, dynamic> map)
       : id = map[idCollection],
         text = map[textContain],
         translateName = map[translate],
         num = map[verseNum],
         chapitre = map[verseChapter],
         livre = map[verseBook],
-        super.fromMap(path, map);
+        super.fromJson(path, map);
 
   /// Represent [path] for the map conversion.
   static const String collectionPath = 'path';
@@ -52,9 +52,9 @@ class VersesTable extends Model {
   /// Book name.
   final String livre;
 
-  /// Transform received data to Map.
+  /// Function used for tranform received data to Json.
   @override
-  Map<String, dynamic> toMap() => <String, dynamic>{
+  Map<String, dynamic> toJson() => <String, dynamic>{
         idCollection: id,
         textContain: text,
         verseNum: num,
