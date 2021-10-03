@@ -20,7 +20,7 @@ class VersesTable extends Model {
   ///  Represents [translateName] for the json conversion.
   static const String keyMapTranslate = 'translation';
 
-  /// Represent [text] for the json conversion.
+  /// Represents [text] for the json conversion.
   static const String keyMapText = 'text';
 
   /// Represent [id] for the json conversion.
