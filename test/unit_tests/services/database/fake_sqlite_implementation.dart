@@ -15,18 +15,18 @@ void main() {
 
       expect(verses?.first['id'], 1);
     });
-    test('Retrieve by Traductionid.', () async {
+    test('Retrieve by translation.', () async {
       final Database database = Database.fakeSqlite();
       final List<DatabaseQuery> filters = <DatabaseQuery>[];
       final DatabaseQuery databaseQuery1 =
-          DatabaseQuery('traductionId',
+          DatabaseQuery('translation',
            'tra1', DatabaseFieldCondition.isEqualTo);
       filters.add(databaseQuery1);
 
       final List<Map<String, dynamic>>? verses =
           await database.getCollection('verse', filters: filters);
 
-      expect(verses?.first['traductionId'], 'tra1');
+      expect(verses?.first['translation'], 'tra1');
       expect(verses?.length, 2);
     });
     test('Retrieve by book.', () async {
@@ -54,10 +54,13 @@ void main() {
       filters.add(databaseQuery1);
       final Map<String, dynamic> updateMap = <String, dynamic>{
           'id': 5,
-          'traductionId': 'tra3',
+          'translation': 'tra3',
+          'path': 'verse',
+          'verseNum': 5,
           'book': 'timote',
           'chapter': '2',
           'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'favorite': true,
         };
 
       final bool status = await database.
@@ -73,10 +76,13 @@ void main() {
       filters.add(databaseQuery1);
       final Map<String, dynamic> updateMap = <String, dynamic>{
           'id': 5,
-          'traductionId': 'tra3',
+          'translation': 'tra3',
+          'path': 'verse',
+          'verseNum': 5,
           'book': 'timote',
           'chapter': '2',
           'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'favorite': true,
         };
 
       final bool status = await database.
@@ -90,10 +96,13 @@ void main() {
     test('Create succefully', () async {
       final Database database = Database.fakeSqlite();
       final Map<String, dynamic> recordMap = <String, dynamic>{
-          'traductionId': 'tra3',
+          'translation': 'tra3',
+          'path': 'verse',
+          'verseNum': 6,
           'book': 'timote',
           'chapter': '2',
           'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'favorite': true,
         };
 
       final bool status = await database.

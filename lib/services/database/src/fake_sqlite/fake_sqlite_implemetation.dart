@@ -4,82 +4,111 @@ part of database;
 class _FakeSqliteImplementation implements Database {
   final List<Map<String, dynamic>> _dataBase = <Map<String, dynamic>>[
     <String, dynamic>{
-      'table': 'verse',
+      'path': 'verse',
       'list': <Map<String, dynamic>>[
         <String, dynamic>{
           'id': 1,
-          'traductionId': 'tra1',
+          'translation': 'tra1',
+          'verseNum' : 1,
+          'path' : 'verse',
           'book': 'jean',
           'chapter': '1',
           'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'favorite': false, 
         },
         <String, dynamic>{
           'id': 2,
-          'traductionId': 'tra1',
+          'translation': 'tra1',
+          'verseNum' : 1,
           'book': 'jean',
           'chapter': '1',
           'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'favorite': false, 
         },
         <String, dynamic>{
           'id': 3,
-          'traductionId': 'tra2',
+          'translation': 'tra2',
+          'verseNum' : 2,
+          'path' : 'verse',
           'book': 'luc',
           'chapter': '2',
           'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'favorite': false, 
         },
         <String, dynamic>{
           'id': 4,
-          'traductionId': 'tra2',
+          'translation': 'tra2',
+          'verseNum' : 3,
+          'path' : 'verse',
           'book': 'luc',
           'chapter': '2',
           'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'favorite': false, 
         },
         <String, dynamic>{
           'id': 5,
-          'traductionId': 'tra3',
+          'translation': 'tra3',
+          'verseNum' : 5,
+          'path' : 'verse',
           'book': 'timote',
           'chapter': '2',
           'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'favorite': false, 
         },
       ]
     },
     <String, dynamic>{
-      'table': 'chant',
+      'path': 'chant',
       'list': <Map<String, dynamic>>[
         <String, dynamic>{
           'id': 1,
-          'traductionId': 'tra1',
+          'translation': 'tra1',
+          'verseNum' : 1,
+          'path' : 'chant',
           'book': 'jean',
           'chapter': '1',
           'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'favorite': false, 
         },
         <String, dynamic>{
           'id': 2,
-          'traductionId': 'tra1',
+          'translation': 'tra1',
+          'verseNum' : 2,
+          'path' : 'chant',
           'book': 'jean',
           'chapter': '1',
           'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'favorite': false, 
         },
         <String, dynamic>{
           'id': 3,
-          'traductionId': 'tra2',
+          'translation': 'tra2',
+          'verseNum' : 3,
+          'path' : 'chant',
           'book': 'luc',
           'chapter': '2',
           'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'favorite': false, 
         },
         <String, dynamic>{
           'id': 4,
-          'traductionId': 'tra2',
+          'translation': 'tra2',
+          'verseNum' : 4,
+          'path' : 'chant',
           'book': 'luc',
           'chapter': '2',
           'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'favorite': false, 
         },
         <String, dynamic>{
           'id': 5,
-          'traductionId': 'tra3',
+          'translation': 'tra3',
+          'verseNum' : 5,
+          'path' : 'chant',
           'book': 'timote',
           'chapter': '2',
           'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'favorite': false, 
         },
       ]
     }
@@ -89,7 +118,7 @@ class _FakeSqliteImplementation implements Database {
   Future<List<Map<String, dynamic>>?> getCollection(String collectionPath,
       {List<DatabaseQuery>? filters = const <DatabaseQuery> []}) async {
     final Map<String, dynamic> data = _dataBase.firstWhere(
-        (Map<String, dynamic> element) => element['table'] == collectionPath,
+        (Map<String, dynamic> element) => element['path'] == collectionPath,
         orElse: () => <String, dynamic>{});
     if (data == <String, dynamic>{}) {
       return null;
@@ -101,17 +130,20 @@ class _FakeSqliteImplementation implements Database {
   Future<bool> createRecord(
       String collectionPath, Map<String, dynamic> recordMap) async {
     final Map<String, dynamic> data = _dataBase.firstWhere(
-        (Map<String, dynamic> element) => element['table'] == collectionPath,
+        (Map<String, dynamic> element) => element['path'] == collectionPath,
         orElse: () => <String, dynamic>{});
     if (data == <String, dynamic>{}) {
       return false;
     }
-    if (!recordMap.containsKey('traductionId') ||
+    if (!recordMap.containsKey('translation') ||
         !recordMap.containsKey('book') ||
+        !recordMap.containsKey('path') ||
+        !recordMap.containsKey('favorite') ||
         !recordMap.containsKey('chapter') ||
         !recordMap.containsKey('text')) {
       return false;
     }
+    recordMap['favorite'] = false;
     data['list'].add(recordMap);
     return true;
   }
@@ -119,7 +151,7 @@ class _FakeSqliteImplementation implements Database {
   @override
   Future<bool> removeRecordByPath(String collectionPath, int documentId) async {
     final Map<String, dynamic> data = _dataBase.firstWhere(
-        (Map<String, dynamic> element) => element['table'] == collectionPath,
+        (Map<String, dynamic> element) => element['path'] == collectionPath,
         orElse: () => <String, dynamic>{});
     if (data == <String, dynamic>{}) {
       return false;
@@ -143,15 +175,18 @@ class _FakeSqliteImplementation implements Database {
       String collectionPath, Map<String, dynamic> updateMap,
       {List<DatabaseQuery>? filters = const <DatabaseQuery>[]}) async {
     final Map<String, dynamic> data = _dataBase.firstWhere(
-        (Map<String, dynamic> element) => element['table'] == collectionPath,
+        (Map<String, dynamic> element) => element['path'] == collectionPath,
         orElse: () => <String, dynamic>{});
     if (data == <String, dynamic>{}) {
       return false;
     }
     final List<Map<String, dynamic>> retrievers = 
       getElementByfilter(data['list'], filters: filters);
-    if (!updateMap.containsKey('traductionId') ||
+    if (!updateMap.containsKey('translation') ||
         !updateMap.containsKey('book') ||
+        !updateMap.containsKey('verseNum') ||
+        !updateMap.containsKey('path') ||
+        !updateMap.containsKey('favorite') ||
         !updateMap.containsKey('chapter') ||
         !updateMap.containsKey('id') ||
         !updateMap.containsKey('text')) {
