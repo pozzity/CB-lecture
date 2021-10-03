@@ -1,38 +1,42 @@
 import '_models.dart';
 
-/// Verses Model.
+/// Class which represente verse Model.
 class VersesTable extends Model {
   /// Function used for tranform Json to data.
   @override
-  VersesTable.fromJson(String path, Map<String, dynamic> map)
-      : id = map[idCollection],
-        text = map[textContain],
-        translateName = map[translate],
-        num = map[verseNum],
-        chapitre = map[verseChapter],
-        livre = map[verseBook],
-        super.fromJson(path, map);
+  VersesTable.fromJson(String path, Map<String, dynamic> json)
+      : id = json[keyMapId],
+        text = json[keyMapText],
+        translateName = json[keyMapTranslate],
+        num = json[keyMapVerseNum],
+        chapter = json[keyMapChapter],
+        book = json[keyMapBook],
+        favorite = json[keyMapFavorite],
+        super.fromJson(path, json);
 
-  /// Represent [path] for the map conversion.
-  static const String collectionPath = 'path';
+  /// Represent [path] for the json conversion.
+  static const String keyMapPath = 'path';
 
-  ///  Represent [translateName] for the map conversion.
-  static const String translate = 'translation';
+  ///  Represent [translateName] for the json conversion.
+  static const String keyMapTranslate = 'translation';
 
-  /// Represent [text] for the map conversion.
-  static const String textContain = 'text';
+  /// Represent [text] for the json conversion.
+  static const String keyMapText = 'text';
 
-  /// Represent [id] for the map conversion.
-  static const String idCollection = 'id';
+  /// Represent [id] for the json conversion.
+  static const String keyMapId = 'id';
 
-  /// Represent [num] for the map conversion.
-  static const String verseNum = 'verseNum';
+  /// Represent [num] for the json conversion.
+  static const String keyMapVerseNum = 'verseNum';
 
-  /// Represent [chapitre] for the map conversion
-  static const String verseChapter = 'chapitre';
+  /// Represent [chapter] for the json conversion
+  static const String keyMapChapter = 'chapter';
 
-  /// Represent [livre] for the map conversion
-  static const String verseBook = 'livre';
+  /// Represent [book] for the json conversion
+  static const String keyMapBook = 'book';
+
+  /// Represent [favorite] for the json conversion
+  static const String keyMapFavorite = 'favorite';
 
   /// Translate name.
   final String translateName;
@@ -47,20 +51,24 @@ class VersesTable extends Model {
   final int num;
 
   /// Chapter name.
-  final int chapitre;
+  final int chapter;
 
   /// Book name.
-  final String livre;
+  final String book;
+
+  /// Status favorite of verse.
+  bool favorite;
 
   /// Function used for tranform received data to Json.
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        idCollection: id,
-        textContain: text,
-        verseNum: num,
-        verseBook: livre,
-        verseChapter: chapitre,
-        translate: translateName,
-        collectionPath: path
+        keyMapId: id,
+        keyMapText: text,
+        keyMapVerseNum: num,
+        keyMapBook: book,
+        keyMapChapter: chapter,
+        keyMapTranslate: translateName,
+        keyMapPath: path,
+        keyMapFavorite: favorite
       };
 }
