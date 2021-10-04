@@ -31,10 +31,19 @@ dependencies:
 
   flutter:
     sdk: flutter
+
+  # A wrapper around InheritedWidget to make them easier to use and
+  # more reusable.
+  # Platform:
+  #  - Flutter: Android iOS Linux macOS Windows Web
+  provider: ^6.0.0
+  
   # Ultimate Data Generator (UDG) is the most complete offline data generator for prototyping using Flutter.
   # platform:
   #  - Flutter: Android iOS macOS
   sqflite: ^2.0.0+4
+
+  
 
 dev_dependencies:
   flutter_lints: ^1.0.4
