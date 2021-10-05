@@ -84,4 +84,7 @@ abstract class Database {
     String collectionPath, 
     Map<String, dynamic> updateMap, 
     {List<DatabaseQuery>? filters = const <DatabaseQuery>[]});
+
+  /// Close instance of the database.
+  Future<void> close();
 }

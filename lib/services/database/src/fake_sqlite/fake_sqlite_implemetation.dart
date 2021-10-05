@@ -245,4 +245,9 @@ class _FakeSqliteImplementation implements Database {
     }
     return retrievers;
   }
+
+  @override
+  Future<void> close() {
+    throw UnimplementedError();
+  }
 }

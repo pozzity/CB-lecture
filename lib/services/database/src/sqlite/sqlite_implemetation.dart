@@ -38,7 +38,7 @@ class _SQLiteImplementation implements Database {
     return db.execute(allTables.toString());
   }
 
-  /// Function who close instance of database sqlite.
+  @override
   Future<void> close() async {
     final sqlite.Database? db = await database;
     await db?.close();
