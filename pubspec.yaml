@@ -28,10 +28,11 @@ dependencies:
   #  - Flutter: Android iOS Linux macOS Windows Web
   cupertino_icons: ^1.0.2
   
+  firebase_analytics: ^8.3.2        #Firebase Analytics package
+  
   flutter:
     sdk: flutter
     
-  firebase_analytics: ^8.3.2        #Firebase Analytics package
 
 dev_dependencies:
   flutter_lints: ^1.0.4
