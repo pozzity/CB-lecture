@@ -8,18 +8,20 @@ import 'app_text_model.dart';
 /// A widget that display a text base on our preference data.
 class AppText extends StatelessWidget {
   /// Construct a new [AppText].
-  const AppText(
-      {required this.text,
-      this.textStyle,
-      Key? key,
-      this.maxLines,
-      this.textScaleFactor,
-      this.overflow,
-      this.textAlign,
-      this.textDirection,
-      this.softWrap,
-      this.textMode})
-      : super(key: key);
+  const AppText({
+    required this.text,
+    this.textStyle,
+    Key? key,
+    this.maxLines,
+    this.textScaleFactor,
+    this.overflow,
+    this.textAlign,
+    this.textDirection,
+    this.softWrap,
+    this.textMode,
+    this.color,
+    this.fontWeight,
+  }) : super(key: key);
 
   /// The text to display.
   final String text;
@@ -46,6 +48,12 @@ class AppText extends StatelessWidget {
   /// The directionality of the text.
   final TextDirection? textDirection;
 
+  /// The custom font weight of the text.
+  final FontWeight? fontWeight;
+
+  /// The custom color of the text.
+  final Color? color;
+
   /// The display mode of the text.
   final AppTextMode? textMode;
 
@@ -67,6 +75,8 @@ class AppText extends StatelessWidget {
           textAlign: textAlign,
           textDirection: textDirection,
           textMode: textMode,
+          fontWeigth: fontWeight,
+          color: color,
           textScaleFactor: textScaleFactor,
         ),
         child: _AppTextView(),
@@ -84,7 +94,9 @@ class AppText extends StatelessWidget {
       ..add(EnumProperty<TextAlign?>('textAlign', textAlign))
       ..add(DiagnosticsProperty<bool?>('softWrap', softWrap))
       ..add(DiagnosticsProperty<AppTextMode>('textMode', textMode))
-      ..add(EnumProperty<TextDirection?>('textDirection', textDirection));
+      ..add(EnumProperty<TextDirection?>('textDirection', textDirection))
+      ..add(ColorProperty('color', color))
+      ..add(DiagnosticsProperty<FontWeight?>('fontWeight', fontWeight));
   }
 }
 
