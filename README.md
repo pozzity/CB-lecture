@@ -2,15 +2,12 @@
 
 A new Flutter project.
 
-## Getting Started
+## Test
+### | Golden Toolkit
 
-This project is a starting point for a Flutter application.
+[Golden Toolkit](https://pub.dev/packages/golden_toolkit) contains APIs and utilities that build upon Flutter's Golden test functionality to provide powerful UI regression tests.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To generate a new golden use this command line
+```bash
+flutter test --update-goldens --tags=golden
+```

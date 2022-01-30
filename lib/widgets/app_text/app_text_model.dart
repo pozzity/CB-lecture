@@ -78,11 +78,14 @@ class AppTextMode {
   /// The large header display mode for document like's title.
   static const AppTextMode extraheader = AppTextMode._(25, FontWeight.bold);
 
+  /// The header display mode that can be use for title bar.
+  static const AppTextMode header = AppTextMode._(21, FontWeight.w600);
+
   /// The header display mode that can be use for dialog.
-  static const AppTextMode subHeader = AppTextMode._(21, FontWeight.w600);
+  static const AppTextMode subHeader = AppTextMode._(19, FontWeight.w600);
 
   /// The header display mode that can be use for appbar title.
-  static const AppTextMode subHeader2 = AppTextMode._(18, FontWeight.w600);
+  static const AppTextMode subHeader2 = AppTextMode._(17, FontWeight.w600);
 
   /// The default mode to display for any content.
   static const AppTextMode body = AppTextMode._(15, FontWeight.w500);
