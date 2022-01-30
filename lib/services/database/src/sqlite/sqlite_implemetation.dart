@@ -2,20 +2,19 @@ part of database;
 
 /// Implementation class for Sqlite database.
 class _SQLiteImplementation implements Database {
-
   /// Initialize class for [_SQLiteImplementation] database.
   _SQLiteImplementation(
-      {required String nameDataBase, required List<Table> tables})  {
-    _database =  initDb(tables: tables, nameDataBase: nameDataBase);
+      {required String nameDataBase, required List<Table> tables}) {
+    _database = initDb(tables: tables, nameDataBase: nameDataBase);
   }
 
   /// Reference to the database.
   static Future<sqlite.Database>? _database;
 
-  /// Getter of instance database
-  Future<sqlite.Database>? get database =>  _database;
+  /// Gets of instance database.
+  Future<sqlite.Database>? get database => _database;
 
-  /// Initializes SQLite database
+  /// Initializes SQLite database.
   Future<sqlite.Database> initDb(
       {List<Table>? tables, String? nameDataBase}) async {
     final String localPath =
@@ -26,7 +25,7 @@ class _SQLiteImplementation implements Database {
     });
   }
 
-  /// Creates a new SQLite database..
+  /// Creates a new SQLite database.
   Future<void> _onCreate(sqlite.Database db, int version,
       {List<Table>? tables}) async {
     final StringBuffer allTables = StringBuffer();
@@ -78,8 +77,8 @@ class _SQLiteImplementation implements Database {
           break;
       }
     }
-    final String where = 
-      bufferWhere.toString().substring(4 , bufferWhere.toString().length);
+    final String where =
+        bufferWhere.toString().substring(4, bufferWhere.toString().length);
     return db?.query(
       collectionPath,
       where: where,
@@ -100,8 +99,7 @@ class _SQLiteImplementation implements Database {
   }
 
   @override
-  Future<bool> removeRecordByPath(
-      String collectionPath, int documentId) async {
+  Future<bool> removeRecordByPath(String collectionPath, int documentId) async {
     final sqlite.Database? db = await database;
     final int i = await db!.delete(
       collectionPath,
@@ -113,9 +111,8 @@ class _SQLiteImplementation implements Database {
 
   @override
   Future<bool> updateRecordByPath(
-    String collectionPath, 
-    Map<String, dynamic> updateMap, 
-    {List<DatabaseQuery>? filters = const <DatabaseQuery>[]}) async{
+      String collectionPath, Map<String, dynamic> updateMap,
+      {List<DatabaseQuery>? filters = const <DatabaseQuery>[]}) async {
     final sqlite.Database? db = await database;
     final StringBuffer bufferWhere = StringBuffer();
     final List<dynamic> whereArgs = <String>[];
@@ -147,8 +144,8 @@ class _SQLiteImplementation implements Database {
           break;
       }
     }
-    final String where = 
-      bufferWhere.toString().substring(4 , bufferWhere.toString().length);
+    final String where =
+        bufferWhere.toString().substring(4, bufferWhere.toString().length);
     final int? i = await db?.update(
       collectionPath,
       updateMap,
