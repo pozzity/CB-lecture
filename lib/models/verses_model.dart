@@ -7,6 +7,7 @@ class VersesTable extends Model {
   VersesTable.fromJson(String path, Map<String, dynamic> json)
       : id = json[keyMapId],
         textFr = json[keyMapTextFr],
+        translation = json[keyMapTranslation],
         textEn = json[keyMapTextEn],
         num = json[keyMapVerseNum],
         chapter = json[keyMapChapter],
@@ -16,6 +17,9 @@ class VersesTable extends Model {
 
   /// Represents [path] for the json conversion.
   static const String keyMapPath = 'path';
+
+  /// Represents [translation] for the json conversion.
+  static const String keyMapTranslation = 'translation';
 
   /// Represents [textFr] for the json conversion.
   static const String keyMapTextFr = 'textFr';
@@ -56,6 +60,9 @@ class VersesTable extends Model {
   /// Book name.
   final String book;
 
+  /// Translation name.
+  final String translation;
+
   /// Status favorite of verse.
   bool favorite;
 
@@ -69,6 +76,7 @@ class VersesTable extends Model {
         keyMapBook: book,
         keyMapChapter: chapter,
         keyMapPath: path,
+        keyMapTranslation: translation,
         keyMapFavorite: favorite
       };
 }
