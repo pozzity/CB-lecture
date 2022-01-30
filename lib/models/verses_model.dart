@@ -6,8 +6,8 @@ class VersesTable extends Model {
   @override
   VersesTable.fromJson(String path, Map<String, dynamic> json)
       : id = json[keyMapId],
-        text = json[keyMapText],
-        translateName = json[keyMapTranslate],
+        textFr = json[keyMapTextFr],
+        textEn = json[keyMapTextEn],
         num = json[keyMapVerseNum],
         chapter = json[keyMapChapter],
         book = json[keyMapBook],
@@ -17,11 +17,11 @@ class VersesTable extends Model {
   /// Represents [path] for the json conversion.
   static const String keyMapPath = 'path';
 
-  ///  Represents [translateName] for the json conversion.
-  static const String keyMapTranslate = 'translation';
+  /// Represents [textFr] for the json conversion.
+  static const String keyMapTextFr = 'textFr';
 
-  /// Represents [text] for the json conversion.
-  static const String keyMapText = 'text';
+  /// Represents [textEn] for the json conversion.
+  static const String keyMapTextEn = 'textEn';
 
   /// Represents [id] for the json conversion.
   static const String keyMapId = 'id';
@@ -29,20 +29,20 @@ class VersesTable extends Model {
   /// Represents [num] for the json conversion.
   static const String keyMapVerseNum = 'verseNum';
 
-  /// Represents [chapter] for the json conversion
+  /// Represents [chapter] for the json conversion.
   static const String keyMapChapter = 'chapter';
 
-  /// Represents [book] for the json conversion
+  /// Represents [book] for the json conversion.
   static const String keyMapBook = 'book';
 
-  /// Represents [favorite] for the json conversion
+  /// Represents [favorite] for the json conversion.
   static const String keyMapFavorite = 'favorite';
 
-  /// Translate name.
-  final String translateName;
+  /// Text of the verse french version.
+  final String textFr;
 
-  /// Text of verse.
-  final String text;
+  /// Text of the verse english version.
+  final String textEn;
 
   /// Collection id.
   final int id;
@@ -63,11 +63,11 @@ class VersesTable extends Model {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         keyMapId: id,
-        keyMapText: text,
+        keyMapTextFr: textFr,
+        keyMapTextEn: textEn,
         keyMapVerseNum: num,
         keyMapBook: book,
         keyMapChapter: chapter,
-        keyMapTranslate: translateName,
         keyMapPath: path,
         keyMapFavorite: favorite
       };
