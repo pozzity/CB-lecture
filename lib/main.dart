@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'utils/app_intl/app_intl.dart';
+
 void main() {
   runApp(const CBLectureApp());
 }
@@ -13,6 +15,12 @@ class CBLectureApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: 'Flutter Demo',
+        localizationsDelegates: <LocalizationsDelegate<dynamic>>[
+          DefaultMaterialLocalizations.delegate,
+          DefaultWidgetsLocalizations.delegate,
+          AppLocalizationDelegate()
+        ],
+        supportedLocales: AppLocalizationDelegate().supportedLocales,
         theme: ThemeData(
           // This is the theme of your application.
           //
@@ -25,9 +33,12 @@ class CBLectureApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: const Scaffold(
+        home: Scaffold(
           body: Center(
-            child: Text('Flutter Demo Home Page'),
+            child: Builder(
+              builder: (BuildContext context) => Text(
+                  AppIntl(locale: Localizations.localeOf(context)).appName),
+            ),
           ),
         ),
       );
