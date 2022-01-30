@@ -13,7 +13,8 @@ class _FakeSqliteImplementation implements Database {
           'path': 'verse',
           'book': 'jean',
           'chapter': '1',
-          'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'textFr': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'textEn': 'Jean said this is why the Lord sent me',
           'favorite': false,
         },
         <String, dynamic>{
@@ -22,7 +23,8 @@ class _FakeSqliteImplementation implements Database {
           'num': 2,
           'book': 'jean',
           'chapter': '1',
-          'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'textFr': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'textEn': 'Jean said this is why the Lord sent me',
           'favorite': false,
         },
         <String, dynamic>{
@@ -32,7 +34,8 @@ class _FakeSqliteImplementation implements Database {
           'path': 'verse',
           'book': 'luc',
           'chapter': '2',
-          'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'textFr': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'textEn': 'Jean said this is why the Lord sent me',
           'favorite': false,
         },
         <String, dynamic>{
@@ -42,7 +45,8 @@ class _FakeSqliteImplementation implements Database {
           'path': 'verse',
           'book': 'luc',
           'chapter': '2',
-          'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'textFr': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'textEn': 'Jean said this is why the Lord sent me',
           'favorite': false,
         },
         <String, dynamic>{
@@ -52,7 +56,8 @@ class _FakeSqliteImplementation implements Database {
           'path': 'verse',
           'book': 'timote',
           'chapter': '2',
-          'text': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'textFr': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+          'textEn': 'Jean said this is why the Lord sent me',
           'favorite': false,
         },
       ]
