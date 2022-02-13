@@ -1,3 +1,4 @@
+[![example workflow](https://github.com/pozzity/cb_lecture/actions/workflows/flutter_ci.yml/badge.svg?branch=main)](https://github.com/pozzity/cb_lecture/actions?query=branch%3Amain)
 # cb_lecture
 
 A new Flutter project.
