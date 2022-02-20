@@ -1,4 +1,4 @@
-library database_internal;
+library database;
 
 import 'package:path/path.dart' as path;
 import 'package:sqflite/sqflite.dart' as sqlite;
