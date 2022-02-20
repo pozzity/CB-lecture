@@ -1,7 +1,7 @@
-part of database;
+part of database_external;
 
 /// Database implementation using Firebase Firestore & Storage.
-class _FirestoreImplementation implements Database {
+class _FirestoreImplementation implements DatabaseExternal {
   final FirebaseFirestore _databaseReference = FirebaseFirestore.instance;
 
   @override

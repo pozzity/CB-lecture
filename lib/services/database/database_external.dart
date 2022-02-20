@@ -1,4 +1,4 @@
-library database_internal;
+library database_external;
 
 import 'dart:collection';
 import 'dart:convert';
@@ -6,26 +6,16 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:path/path.dart' as path;
-import 'package:sqflite/sqflite.dart' as sqlite;
 
-
-part 'src/fake_sqlite/fake_sqlite_implemetation.dart';
-part 'src/helper/database_query.dart';
-part 'src/sqlite/lib/sqlite_colum.dart';
-part 'src/sqlite/lib/sqlite_table.dart';
-part 'src/sqlite/sqlite_implemetation.dart';
+part 'src/firestore/firestore_implementation.dart';
+part 'src/fake_firestore/fake_firestore_implemebtation.dart';
 
 /// Helpers class that help us to retrieve, edit or delete document or
 /// Collection from our database.
-abstract class DatabaseInternal {
-  /// Constructs a new Database instance of [_SQLiteImplementation].
-  factory DatabaseInternal.sqlite(
-          {required List<Table> tables, required String nameDataBase}) =>
-      _SQLiteImplementation(tables: tables, nameDataBase: nameDataBase);
+abstract class DatabaseExternal {
 
-  /// Constructs a new Database instance of [_FakeSqliteImplementation].
-  factory DatabaseInternal.fakeSqlite() => _FakeSqliteImplementation();
+  /// Constructs a new Database instance of [_FirestoreImplementation].
+  factory DatabaseExternal.firestore() => _FirestoreImplementation();
 
   /// Retrieves the given collection from the database.
   /// * [collectionPath] The path to the collection to retrieve.
