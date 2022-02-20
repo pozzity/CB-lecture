@@ -1,4 +1,4 @@
-library database_internal;
+library database;
 
 import 'dart:collection';
 import 'dart:convert';

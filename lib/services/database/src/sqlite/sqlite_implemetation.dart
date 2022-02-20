@@ -1,4 +1,4 @@
-part of database_internal;
+part of database;
 
 /// Implementation class for Sqlite database.
 class _SQLiteImplementation implements DatabaseInternal {
