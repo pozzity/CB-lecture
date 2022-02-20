@@ -1,5 +1,7 @@
-library database_helper;
+library database;
 
+import 'dart:collection';
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,52 +9,50 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart' as path;
 import 'package:sqflite/sqflite.dart' as sqlite;
 
-part 'src/fake_implemetation.dart';
 part 'src/firestore/firestore_implementation.dart';
+part 'src/fake_firestore/fake_firestore_implemebtation.dart';
+
+part 'src/fake_sqlite/fake_sqlite_implemetation.dart';
 part 'src/helper/database_query.dart';
-part 'src/sqlite/sqlite_colum.dart';
+part 'src/sqlite/lib/sqlite_colum.dart';
+part 'src/sqlite/lib/sqlite_table.dart';
 part 'src/sqlite/sqlite_implemetation.dart';
-part 'src/sqlite/sqlite_table.dart';
 
 /// Helpers class that help us to retrieve, edit or delete document or
 /// Collection from our database.
 abstract class Database {
-
   /// Constructs a new Database instance of [_SQLiteImplementation].
-  factory Database.sqlite({
-    required List<Table> tables, required String nameDataBase})=>
+  factory Database.sqlite(
+          {required List<Table> tables, required String nameDataBase}) =>
       _SQLiteImplementation(tables: tables, nameDataBase: nameDataBase);
-  
-  /// Constructs a new Database instance of [_FakeImplementation].
-  factory Database.fake() => _FakeImplementation();
 
   /// Constructs a new Database instance of [_FirestoreImplementation].
   factory Database.firestore() => _FirestoreImplementation();
 
+  /// Constructs a new Database instance of [_FakeSqliteImplementation].
+  factory Database.fakeSqlite() => _FakeSqliteImplementation();
 
   /// Retrieves the given collection from the database.
   /// * [collectionPath] The path to the collection to retrieve.
   /// * [filters] The value filters the collection.
-  ///   eg: 
+  ///   eg:
   ///    # For no sql implementation.
   ///       - collectionName, filter?
   ///    # For sql implementation.
-  ///       - tableName, filter?
-  ///    # For fake implementation.
-  ///       - table_name/book_name/chapter_name/verser_id
-  ///       - table_name/book_name/chapter_name
-  ///       - table_name/book_name
-  /// * return 
+  ///       - collectionName, filter?
+  ///    # For fake sqlite implementation.
+  ///       - collectionName : value possible [verse, chant], filter
+  /// * return
   ///     # Succes : Get record in our database as List<Map<String, dynamic>
   ///     # Error : Null
-  Future<List<Map<String, dynamic>>?> getCollection(String collectionPath, 
-    {List<DatabaseQuery>? filters});
+  Future<List<Map<String, dynamic>>?> getCollection(String collectionPath,
+      {List<DatabaseQuery>? filters});
 
   /// Create collection from the database.
   /// * [collectionPath] the path to the collection to create.
   /// * [recordMap] Value to create.
-  /// 
-  ///   eg: 
+  ///
+  ///   eg:
   ///    # For no sql implementation.
   ///       - collection_name, recordMap
   ///    # For  sqlite implementation .
@@ -66,7 +66,7 @@ abstract class Database {
   /// Remove collection from the database.
   /// * [collectionPath] the path to the collection to remove
   /// * [documentId] Id of collection remove.
-  ///   eg: 
+  ///   eg:
   ///    # For no sql implementation.
   ///       - collectionName , documentId
   ///    # For sql implementation.
@@ -74,6 +74,24 @@ abstract class Database {
   /// * return boolean
   ///     # Succes : true
   ///     # Error : false
-  Future<bool> removeRecordByPath(
-      String collectionPath, int documentId);
+  Future<bool> removeRecordByPath(String collectionPath, int documentId);
+
+  /// Update collection from the database.
+  /// * [collectionPath] the path to the collection to update
+  /// * [updateMap] Collection update.
+  /// * [filters] Filter for find collection update.
+  ///   eg:
+  ///    # For no sql implementation.
+  ///       - collectionName , documentId
+  ///    # For sql implementation.
+  ///       - tableName , documentId
+  /// * return boolean
+  ///     # Succes : true
+  ///     # Error : false
+  Future<bool> updateRecordByPath(
+      String collectionPath, Map<String, dynamic> updateMap,
+      {List<DatabaseQuery>? filters = const <DatabaseQuery>[]});
+
+  /// Close instance of the database.
+  Future<void> close();
 }

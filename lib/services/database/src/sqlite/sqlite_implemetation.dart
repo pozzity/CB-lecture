@@ -1,21 +1,20 @@
-part of database_helper;
+part of database;
 
 /// Implementation class for Sqlite database.
 class _SQLiteImplementation implements Database {
-
   /// Initialize class for [_SQLiteImplementation] database.
   _SQLiteImplementation(
-      {required String nameDataBase, required List<Table> tables})  {
-    _database =  initDb(tables: tables, nameDataBase: nameDataBase);
+      {required String nameDataBase, required List<Table> tables}) {
+    _database = initDb(tables: tables, nameDataBase: nameDataBase);
   }
 
   /// Reference to the database.
   static Future<sqlite.Database>? _database;
 
-  /// Getter of instance database
-  Future<sqlite.Database>? get database =>  _database;
+  /// Gets of instance database.
+  Future<sqlite.Database>? get database => _database;
 
-  /// Initializes SQLite database
+  /// Initializes SQLite database.
   Future<sqlite.Database> initDb(
       {List<Table>? tables, String? nameDataBase}) async {
     final String localPath =
@@ -26,7 +25,7 @@ class _SQLiteImplementation implements Database {
     });
   }
 
-  /// Creates a new SQLite database..
+  /// Creates a new SQLite database.
   Future<void> _onCreate(sqlite.Database db, int version,
       {List<Table>? tables}) async {
     final StringBuffer allTables = StringBuffer();
@@ -38,7 +37,7 @@ class _SQLiteImplementation implements Database {
     return db.execute(allTables.toString());
   }
 
-  /// Function who close instance of database sqlite.
+  @override
   Future<void> close() async {
     final sqlite.Database? db = await database;
     await db?.close();
@@ -78,8 +77,8 @@ class _SQLiteImplementation implements Database {
           break;
       }
     }
-    final String where = 
-      bufferWhere.toString().substring(4 , bufferWhere.toString().length);
+    final String where =
+        bufferWhere.toString().substring(4, bufferWhere.toString().length);
     return db?.query(
       collectionPath,
       where: where,
@@ -100,13 +99,58 @@ class _SQLiteImplementation implements Database {
   }
 
   @override
-  Future<bool> removeRecordByPath(
-      String collectionPath, int documentId) async {
+  Future<bool> removeRecordByPath(String collectionPath, int documentId) async {
     final sqlite.Database? db = await database;
     final int i = await db!.delete(
       collectionPath,
       where: 'id = ?',
       whereArgs: <int>[documentId],
+    );
+    return i != 0;
+  }
+
+  @override
+  Future<bool> updateRecordByPath(
+      String collectionPath, Map<String, dynamic> updateMap,
+      {List<DatabaseQuery>? filters = const <DatabaseQuery>[]}) async {
+    final sqlite.Database? db = await database;
+    final StringBuffer bufferWhere = StringBuffer();
+    final List<dynamic> whereArgs = <String>[];
+    for (final DatabaseQuery filter in filters!) {
+      switch (filter.condition) {
+        case DatabaseFieldCondition.isEqualTo:
+          bufferWhere.write('and ${filter.key} = ? ');
+          whereArgs.add(filter.value);
+          break;
+        case DatabaseFieldCondition.isGreaterThan:
+          bufferWhere.write('and ${filter.key} > ? ');
+          whereArgs.add(filter.value);
+          break;
+        case DatabaseFieldCondition.isGreaterThanOrEqualTo:
+          bufferWhere.write('and ${filter.key} >= ? ');
+          whereArgs.add(filter.value);
+          break;
+        case DatabaseFieldCondition.isLessThan:
+          bufferWhere.write('and ${filter.key} < ? ');
+          whereArgs.add(filter.value);
+          break;
+        case DatabaseFieldCondition.isLessThanOrEqualTo:
+          bufferWhere.write('and ${filter.key} <= ? ');
+          whereArgs.add(filter.value);
+          break;
+        case DatabaseFieldCondition.isNotEqualTo:
+          bufferWhere.write('and ${filter.key} <> ? ');
+          whereArgs.add(filter.value);
+          break;
+      }
+    }
+    final String where =
+        bufferWhere.toString().substring(4, bufferWhere.toString().length);
+    final int? i = await db?.update(
+      collectionPath,
+      updateMap,
+      where: where,
+      whereArgs: whereArgs,
     );
     return i != 0;
   }
