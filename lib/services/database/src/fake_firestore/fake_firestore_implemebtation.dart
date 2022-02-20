@@ -1,7 +1,10 @@
+// ignore_for_file: always_specify_types, prefer_foreach
+
 part of database;
 
 /// Implementation class for fake database firestore.
-class _FakeFireStoreImplementation implements Database {
+class _FakeFireStoreImplementation implements DatabaseExternal {
+  final Logger _log = Logger('_FakeFireStoreImplementation');
   final Map<dynamic, Map<dynamic, dynamic>> _dataBase =
       <dynamic, Map<dynamic, dynamic>>{
     'translation': <dynamic, dynamic>{
@@ -14,8 +17,8 @@ class _FakeFireStoreImplementation implements Database {
             'path': 'verse',
             'book': 'jean',
             'chapter': '1',
-          'textFr': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
-          'textEn': 'Jean said this is why the Lord sent me',
+            'textFr': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+            'textEn': 'Jean said this is why the Lord sent me',
             'favorite': false,
           },
           <String, dynamic>{
@@ -23,8 +26,8 @@ class _FakeFireStoreImplementation implements Database {
             'verseNum': 1,
             'book': 'jean',
             'chapter': '1',
-          'textFr': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
-          'textEn': 'Jean said this is why the Lord sent me',
+            'textFr': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+            'textEn': 'Jean said this is why the Lord sent me',
             'favorite': false,
           },
           <String, dynamic>{
@@ -33,8 +36,8 @@ class _FakeFireStoreImplementation implements Database {
             'path': 'verse',
             'book': 'luc',
             'chapter': '2',
-          'textFr': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
-          'textEn': 'Jean said this is why the Lord sent me',
+            'textFr': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+            'textEn': 'Jean said this is why the Lord sent me',
             'favorite': false,
           },
           <String, dynamic>{
@@ -43,8 +46,8 @@ class _FakeFireStoreImplementation implements Database {
             'path': 'verse',
             'book': 'luc',
             'chapter': '2',
-          'textFr': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
-          'textEn': 'Jean said this is why the Lord sent me',
+            'textFr': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+            'textEn': 'Jean said this is why the Lord sent me',
             'favorite': false,
           },
           <String, dynamic>{
@@ -53,8 +56,8 @@ class _FakeFireStoreImplementation implements Database {
             'path': 'verse',
             'book': 'timote',
             'chapter': '2',
-          'textFr': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
-          'textEn': 'Jean said this is why the Lord sent me',
+            'textFr': 'jean a dit voici ce pourquoi le Seigneur ma envoyer ',
+            'textEn': 'Jean said this is why the Lord sent me',
             'favorite': false,
           },
         ]
@@ -63,9 +66,116 @@ class _FakeFireStoreImplementation implements Database {
   };
 
   @override
-  Map<String, Map<dynamic, dynamic>> getCollection(String collectionPath,
-      {List<DatabaseQuery>? filters = const <DatabaseQuery>[]}) async {
-        final Map<String, Map<dynamic, dynamic>> list =
+  Future<String?> createRecord(
+      String collectionPath, Map<String, dynamic> recordMap) async {
+    
+    final Map? collection = collectionPath.split('/').fold<Map?>(
+        _dataBase,
+        (previousValue, element) =>
+            previousValue is Map ? previousValue[element] : null);
+
+    final int recordId = (collection?.length ?? 0) + 1;
+    final String documentId = 'id_$recordId';
+    collection?.putIfAbsent(documentId, () => recordMap);
+    return documentId;
+  }
+
+  @override
+  Future<void> removeRecordsByPath(
+      String collectionPath, List<String> documentsIds) async {
+    final collection = collectionPath.split('/').fold<Map?>(
+        _dataBase,
+        (previousValue, element) =>
+            previousValue is Map ? previousValue[element] : null);
+    if (collection == null) {
+      _log.warning('>> Method removeRecordsById << '
+          'Your collection <$collectionPath> is empty or do not exist');
+      return;
+    }
+    for (final documentId in documentsIds) {
+      collection.remove(documentId);
+    }
+  }
+
+  @override
+  Future<void> removeRecordByValue(
+      String collectionPath, List<DatabaseQuery> docQueries) async {
+    final Set<String> keysToRemove = {};
+    int counter = 0;
+    final Map? collection = collectionPath.split('/').fold<Map?>(
+        _dataBase,
+        (previousValue, element) =>
+            previousValue is Map ? previousValue[element] : null);
+    if (collection == null) {
+      _log.warning('>> Method removeRecordByValue << '
+          'Your collection <$collectionPath> is empty or do not exist');
+      return;
+    }
+    collection.forEach((key, map) {
+      map as Map;
+      for (final DatabaseQuery docQuery in docQueries) {
+        switch (docQuery.condition) {
+          case DatabaseFieldCondition.isEqualTo:
+            if (map[docQuery.key] == docQuery.value) {
+              counter++;
+            }
+            break;
+          case DatabaseFieldCondition.isGreaterThan:
+            {
+              if (map[docQuery.key] > docQuery.value) {
+                counter++;
+              }
+            }
+            break;
+          case DatabaseFieldCondition.isGreaterThanOrEqualTo:
+            {
+              if (map[docQuery.key] >= docQuery.value) {
+                counter++;
+              }
+            }
+            break;
+          case DatabaseFieldCondition.isLessThan:
+            {
+              if (map[docQuery.key] < docQuery.value) {
+                counter++;
+              }
+            }
+            break;
+          case DatabaseFieldCondition.isLessThanOrEqualTo:
+            {
+              if (map[docQuery.key] <= docQuery.value) {
+                counter++;
+              }
+            }
+            break;
+          case DatabaseFieldCondition.isNotEqualTo:
+            {
+              if (map[docQuery.key] != docQuery.value) {
+                counter++;
+              }
+            }
+            break;
+        }
+      }
+      // If counter count matches the length of docQueries then
+      // there is a match.
+      if (counter == docQueries.length) {
+        keysToRemove.add(key);
+      }
+      // Reset counter for next key match.
+      counter = 0;
+    });
+
+    for (final String keys in keysToRemove) {
+      collection.remove(keys);
+    }
+  }
+
+  @override
+  Future<Map<String, Map<dynamic, dynamic>>?> getCollection(
+      String collectionPath,
+      {List<DatabaseQuery> filters = const []}) async {
+    final Map<String, Map<dynamic, dynamic>> list =
         <String, Map<dynamic, dynamic>>{};
     final Map<dynamic, dynamic>? col = collectionPath.split('/').fold<Map?>(
         _dataBase,
@@ -74,7 +184,7 @@ class _FakeFireStoreImplementation implements Database {
 
     col?.forEach((k, val) {
       final Map map = val;
-      for (final docQuery in filters!) {
+      for (final DatabaseQuery docQuery in filters) {
         final DatabaseFieldCondition condition = docQuery.condition;
         if ((condition == DatabaseFieldCondition.isEqualTo &&
                 map[docQuery.key] != docQuery.value) ||
@@ -99,113 +209,35 @@ class _FakeFireStoreImplementation implements Database {
   }
 
   @override
-  Future<bool> createRecord(
-      String collectionPath, Map<String, dynamic> recordMap) async {
-    final Map<dynamic, dynamic>? collection = collectionPath.split('/').fold<Map?>(
+  Future<Map<dynamic, dynamic>?> getRecordByDocumentPath(String path) async {
+    final List<String> keys = path.split('/')
+      ..removeWhere((element) => element.isEmpty);
+
+    if (keys.length < 2 || keys.length % 2 != 0) {
+      _log.warning(' Invalid path `$path`');
+      return null;
+    }
+    final Map<dynamic, dynamic>? document = keys.fold<Map?>(
         _dataBase,
-        (Map? previousValue, String element) =>
+        (previousValue, element) =>
             previousValue is Map ? previousValue[element] : null);
+    return document;
+  }
 
-    final recordId = (collection?.length ?? 0) + 1;
-    final documentId = 'id_$recordId';
-    collection?.putIfAbsent(documentId, () => recordMap);
+  @override
+  Future<bool> setRecord(
+      String documentPath, Map<String, dynamic> recordMap) async {
+    final pathSegments = documentPath.split('/')
+      ..removeWhere((element) => element.isEmpty);
+
+    if (pathSegments.length % 2 != 0) {
+      _log.severe('Invalid path to record `$documentPath`');
+      return false;
+    }
+    pathSegments.fold<Map>(
+        _dataBase, (previousValue, element) => previousValue[element] ??= {})
+      ..clear()
+      ..addAll(recordMap);
     return true;
-  }
-
-  @override
-  Future<bool> removeRecordByPath(String collectionPath, int documentId) async {
-     final collection = collectionPath.split('/').fold<Map?>(
-        _dataBase,
-        (Map? previousValue, String element) =>
-            previousValue is Map ? previousValue[element] : null);
-    if (collection == null) {
-      log('>> Method removeRecordsById << '
-          'Your collection <$collectionPath> is empty or do not exist');
-      return false;
-    }
-      collection.remove(documentId.toString());
-    
-    return true;
-  }
-
-  @override
-  Future<bool> updateRecordByPath(
-      String collectionPath, Map<String, dynamic> updateMap,
-      {List<DatabaseQuery>? filters = const <DatabaseQuery>[]}) async {
-    final Map<String, dynamic> data = _dataBase.firstWhere(
-        (Map<String, dynamic> element) => element['path'] == collectionPath,
-        orElse: () => <String, dynamic>{});
-    if (data == <String, dynamic>{}) {
-      return false;
-    }
-    final List<Map<String, dynamic>> retrievers =
-        getElementByfilter(data['list'], filters: filters);
-    if (!updateMap.containsKey('translation') ||
-        !updateMap.containsKey('book') ||
-        !updateMap.containsKey('verseNum') ||
-        !updateMap.containsKey('path') ||
-        !updateMap.containsKey('favorite') ||
-        !updateMap.containsKey('chapter') ||
-        !updateMap.containsKey('id') ||
-        !updateMap.containsKey('text')) {
-      return false;
-    }
-    if (retrievers.isEmpty) {
-      return false;
-    } else {
-      for (final Map<String, dynamic> element in retrievers) {
-        element
-          ..clear()
-          ..addAll(updateMap);
-      }
-      return true;
-    }
-  }
-
-  /// Function used for filter list by databaseQuery.
-  List<Map<String, dynamic>> getElementByfilter(
-      List<Map<String, dynamic>> startList,
-      {List<DatabaseQuery>? filters = const <DatabaseQuery>[]}) {
-    List<Map<String, dynamic>> retrievers = startList;
-    for (final DatabaseQuery filter in filters!) {
-      switch (filter.condition) {
-        case DatabaseFieldCondition.isEqualTo:
-          retrievers = List<Map<String, dynamic>>.from(retrievers.where(
-              (Map<String, dynamic> element) =>
-                  element[filter.key] == filter.value));
-          break;
-        case DatabaseFieldCondition.isGreaterThan:
-          retrievers = List<Map<String, dynamic>>.from(retrievers.where(
-              (Map<String, dynamic> element) =>
-                  element[filter.key] > filter.value));
-          break;
-        case DatabaseFieldCondition.isGreaterThanOrEqualTo:
-          retrievers = List<Map<String, dynamic>>.from(retrievers.where(
-              (Map<String, dynamic> element) =>
-                  element[filter.key] >= filter.value));
-          break;
-        case DatabaseFieldCondition.isLessThan:
-          retrievers = List<Map<String, dynamic>>.from(retrievers.where(
-              (Map<String, dynamic> element) =>
-                  element[filter.key] < filter.value));
-          break;
-        case DatabaseFieldCondition.isLessThanOrEqualTo:
-          retrievers = List<Map<String, dynamic>>.from(retrievers.where(
-              (Map<String, dynamic> element) =>
-                  element[filter.key] <= filter.value));
-          break;
-        case DatabaseFieldCondition.isNotEqualTo:
-          retrievers = List<Map<String, dynamic>>.from(retrievers.where(
-              (Map<String, dynamic> element) =>
-                  element[filter.key] == !filter.value));
-          break;
-      }
-    }
-    return retrievers;
-  }
-
-  @override
-  Future<void> close() {
-    throw UnimplementedError();
   }
 }

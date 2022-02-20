@@ -47,6 +47,7 @@ dependencies:
   # more reusable.
   # Platform:
   #  - Flutter: Android iOS Linux macOS Windows Web
+  logging: ^1.0.2
   provider: ^6.0.0
 
   # Ultimate Data Generator (UDG) is the most complete offline data generator for prototyping using Flutter.
