@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../database.dart';
+import '../../database_internal.dart';
 
 void main() {
   group('Retrieves data on fake implementation.', () {
     test('Retrieves data by id.', () async {
-      final Database database = Database.fakeSqlite();
+      final DatabaseInternal database = DatabaseInternal.fakeSqlite();
       final List<DatabaseQuery> filters = <DatabaseQuery>[];
       final DatabaseQuery databaseQuery1 =
           DatabaseQuery('id', 1, DatabaseFieldCondition.isEqualTo);
@@ -18,7 +18,7 @@ void main() {
       expect(verses?.first['id'], 1);
     });
     test('Retrieves data by translation.', () async {
-      final Database database = Database.fakeSqlite();
+      final DatabaseInternal database = DatabaseInternal.fakeSqlite();
       final List<DatabaseQuery> filters = <DatabaseQuery>[];
       final DatabaseQuery databaseQuery1 = DatabaseQuery(
           'translation', 'translation_1', DatabaseFieldCondition.isEqualTo);
@@ -33,7 +33,7 @@ void main() {
       expect(expectValue, true);
     });
     test('Retrieves data by book.', () async {
-      final Database database = Database.fakeSqlite();
+      final DatabaseInternal database = DatabaseInternal.fakeSqlite();
       final List<DatabaseQuery> filters = <DatabaseQuery>[];
       final DatabaseQuery databaseQuery1 =
           DatabaseQuery('book', 'luc', DatabaseFieldCondition.isEqualTo);
@@ -51,7 +51,7 @@ void main() {
 
   group('Updates data on fake implementation.', () {
     test('Updates data succefully', () async {
-      final Database database = Database.fakeSqlite();
+      final DatabaseInternal database = DatabaseInternal.fakeSqlite();
       final List<DatabaseQuery> filters = <DatabaseQuery>[];
       final DatabaseQuery databaseQuery1 =
           DatabaseQuery('id', 5, DatabaseFieldCondition.isEqualTo);
@@ -67,13 +67,13 @@ void main() {
         'favorite': true,
       };
 
-      final bool status = await database.updateRecordByPath('verse', updateMap,
+      final bool status = await database.updateRecord('verse', updateMap,
           filters: filters);
 
       expect(status, true);
     });
     test('Updates data error', () async {
-      final Database database = Database.fakeSqlite();
+      final DatabaseInternal database = DatabaseInternal.fakeSqlite();
       final List<DatabaseQuery> filters = <DatabaseQuery>[];
       final DatabaseQuery databaseQuery1 =
           DatabaseQuery('id', 6, DatabaseFieldCondition.isEqualTo);
@@ -89,7 +89,7 @@ void main() {
         'favorite': true,
       };
 
-      final bool status = await database.updateRecordByPath('verse', updateMap,
+      final bool status = await database.updateRecord('verse', updateMap,
           filters: filters);
 
       expect(status, false);
@@ -98,7 +98,7 @@ void main() {
 
   group('Create data on fake implementation.', () {
     test('Create succefully', () async {
-      final Database database = Database.fakeSqlite();
+      final DatabaseInternal database = DatabaseInternal.fakeSqlite();
       final Map<String, dynamic> recordMap = <String, dynamic>{
         'translation': 'tra3',
         'path': 'verse',
@@ -115,13 +115,13 @@ void main() {
 
   group('Delete data on fake implementation.', () {
     test('Delete succefully', () async {
-      final Database database = Database.fakeSqlite();
-      final bool status = await database.removeRecordByPath('verse', 1);
+      final DatabaseInternal database = DatabaseInternal.fakeSqlite();
+      final bool status = await database.removeRecordById('verse', 1);
       expect(status, true);
     });
     test('Delete error', () async {
-      final Database database = Database.fakeSqlite();
-      final bool status = await database.removeRecordByPath('verse', 10);
+      final DatabaseInternal database = DatabaseInternal.fakeSqlite();
+      final bool status = await database.removeRecordById('verse', 10);
       expect(status, false);
     });
   });

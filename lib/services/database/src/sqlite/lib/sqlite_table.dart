@@ -1,4 +1,4 @@
-part of database;
+part of database_internal;
 
 /// Implementation class for Table Sqlite database.
 class Table {

@@ -1,4 +1,4 @@
-part of database;
+part of database_internal;
 
 
 /// A class query for record info related data.

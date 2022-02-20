@@ -1,4 +1,4 @@
-library database;
+library database_internal;
 
 import 'package:path/path.dart' as path;
 import 'package:sqflite/sqflite.dart' as sqlite;
@@ -11,14 +11,14 @@ part 'src/sqlite/sqlite_implemetation.dart';
 
 /// Helpers class that help us to retrieve, edit or delete document or
 /// Collection from our database.
-abstract class Database {
+abstract class DatabaseInternal {
   /// Constructs a new Database instance of [_SQLiteImplementation].
-  factory Database.sqlite(
+  factory DatabaseInternal.sqlite(
           {required List<Table> tables, required String nameDataBase}) =>
       _SQLiteImplementation(tables: tables, nameDataBase: nameDataBase);
 
   /// Constructs a new Database instance of [_FakeSqliteImplementation].
-  factory Database.fakeSqlite() => _FakeSqliteImplementation();
+  factory DatabaseInternal.fakeSqlite() => _FakeSqliteImplementation();
 
   /// Retrieves the given collection from the database.
   /// * [collectionPath] The path to the collection to retrieve.
@@ -62,7 +62,7 @@ abstract class Database {
   /// * return boolean
   ///     # Succes : true
   ///     # Error : false
-  Future<bool> removeRecordByPath(String collectionPath, int documentId);
+  Future<bool> removeRecordById(String collectionPath, int documentId);
 
   /// Update collection from the database.
   /// * [collectionPath] the path to the collection to update
@@ -76,7 +76,7 @@ abstract class Database {
   /// * return boolean
   ///     # Succes : true
   ///     # Error : false
-  Future<bool> updateRecordByPath(
+  Future<bool> updateRecord(
       String collectionPath, Map<String, dynamic> updateMap,
       {List<DatabaseQuery>? filters = const <DatabaseQuery>[]});
 

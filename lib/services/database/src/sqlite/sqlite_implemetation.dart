@@ -1,7 +1,7 @@
-part of database;
+part of database_internal;
 
 /// Implementation class for Sqlite database.
-class _SQLiteImplementation implements Database {
+class _SQLiteImplementation implements DatabaseInternal {
   /// Initialize class for [_SQLiteImplementation] database.
   _SQLiteImplementation(
       {required String nameDataBase, required List<Table> tables}) {
@@ -99,18 +99,21 @@ class _SQLiteImplementation implements Database {
   }
 
   @override
-  Future<bool> removeRecordByPath(String collectionPath, int documentId) async {
+  Future<bool> removeRecordById(String collectionPath, int documentId) async {
     final sqlite.Database? db = await database;
-    final int i = await db!.delete(
+    if(db != null ){
+      final int i = await db.delete(
       collectionPath,
       where: 'id = ?',
       whereArgs: <int>[documentId],
     );
     return i != 0;
+    }
+    return false;
   }
 
   @override
-  Future<bool> updateRecordByPath(
+  Future<bool> updateRecord(
       String collectionPath, Map<String, dynamic> updateMap,
       {List<DatabaseQuery>? filters = const <DatabaseQuery>[]}) async {
     final sqlite.Database? db = await database;
