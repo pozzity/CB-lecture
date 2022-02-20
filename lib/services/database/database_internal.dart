@@ -1,13 +1,8 @@
 library database;
 
 
-import 'package:logging/logging.dart';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart' as path;
 import 'package:sqflite/sqflite.dart' as sqlite;
-
 
 part 'src/fake_sqlite/fake_sqlite_implemetation.dart';
 part 'src/helper/database_query.dart';
