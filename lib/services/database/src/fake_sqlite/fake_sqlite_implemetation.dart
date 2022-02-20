@@ -1,7 +1,7 @@
-part of database;
+part of database_internal;
 
 /// Implementation class for fake database sqlite.
-class _FakeSqliteImplementation implements Database {
+class _FakeSqliteImplementation implements DatabaseInternal {
   final List<Map<String, dynamic>> _dataBase = <Map<String, dynamic>>[
     <String, dynamic>{
       'path': 'verse',
@@ -99,7 +99,7 @@ class _FakeSqliteImplementation implements Database {
   }
 
   @override
-  Future<bool> removeRecordByPath(String collectionPath, int documentId) async {
+  Future<bool> removeRecordById(String collectionPath, int documentId) async {
     final Map<String, dynamic> data = _dataBase.firstWhere(
         (Map<String, dynamic> element) => element['path'] == collectionPath,
         orElse: () => <String, dynamic>{});
@@ -121,7 +121,7 @@ class _FakeSqliteImplementation implements Database {
   }
 
   @override
-  Future<bool> updateRecordByPath(
+  Future<bool> updateRecord(
       String collectionPath, Map<String, dynamic> updateMap,
       {List<DatabaseQuery>? filters = const <DatabaseQuery>[]}) async {
     final Map<String, dynamic> data = _dataBase.firstWhere(
